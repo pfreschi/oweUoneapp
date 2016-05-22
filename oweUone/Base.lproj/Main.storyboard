@@ -60,7 +60,7 @@
         <!--Favors Feed-->
         <scene sceneID="sk8-ss-yLy">
             <objects>
-                <viewController id="MS5-zh-doa" customClass="FavorFeedViewController" customModule="oweUone" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="favorsFeed" useStoryboardIdentifierAsRestorationIdentifier="YES" id="MS5-zh-doa" customClass="FavorFeedViewController" customModule="oweUone" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="qFE-0E-fId"/>
                         <viewControllerLayoutGuide type="bottom" id="THV-a3-TRt"/>
@@ -73,12 +73,28 @@
                                 <rect key="frame" x="0.0" y="64" width="600" height="487"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="ebh-hB-anV">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Cell" textLabel="2Jn-8m-t6d" detailTextLabel="dcW-fB-RLL" style="IBUITableViewCellStyleSubtitle" id="ebh-hB-anV">
                                         <rect key="frame" x="0.0" y="28" width="600" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="ebh-hB-anV" id="sBw-rq-BSk">
                                             <rect key="frame" x="0.0" y="0.0" width="600" height="43"/>
                                             <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="2Jn-8m-t6d">
+                                                    <rect key="frame" x="15" y="5" width="32" height="20"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Subtitle" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="dcW-fB-RLL">
+                                                    <rect key="frame" x="15" y="25" width="41" height="14"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="11"/>
+                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                 </prototypes>
@@ -239,12 +255,21 @@
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="9eq-b2-VWc">
                                 <rect key="frame" x="168" y="91" width="240" height="128"/>
                             </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6LQ-SD-hft">
+                                <rect key="frame" x="281" y="285" width="38" height="30"/>
+                                <state key="normal" title="Login"/>
+                                <connections>
+                                    <action selector="FBlogin:" destination="5sB-sO-yZY" eventType="touchUpInside" id="z8Y-DO-4zx"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="g33-lD-wOj" firstAttribute="top" secondItem="9eq-b2-VWc" secondAttribute="bottom" constant="381" id="ItI-ix-aPv"/>
+                            <constraint firstItem="6LQ-SD-hft" firstAttribute="centerY" secondItem="u0M-Ui-1gS" secondAttribute="centerY" id="NHT-Lw-acE"/>
                             <constraint firstItem="9eq-b2-VWc" firstAttribute="leading" secondItem="u0M-Ui-1gS" secondAttribute="leadingMargin" constant="148" id="Ske-Zz-34R"/>
                             <constraint firstItem="9eq-b2-VWc" firstAttribute="top" secondItem="n1E-zt-NYk" secondAttribute="bottom" constant="71" id="cqL-su-bt7"/>
+                            <constraint firstItem="6LQ-SD-hft" firstAttribute="centerX" secondItem="u0M-Ui-1gS" secondAttribute="centerX" id="gmz-Bk-ufn"/>
                             <constraint firstAttribute="trailingMargin" secondItem="9eq-b2-VWc" secondAttribute="trailing" constant="172" id="rJ6-np-OMg"/>
                         </constraints>
                     </view>
@@ -260,7 +285,7 @@
         <!--Tab Bar Controller-->
         <scene sceneID="ztm-LY-CAM">
             <objects>
-                <tabBarController id="Xmz-U4-dAX" sceneMemberID="viewController">
+                <tabBarController storyboardIdentifier="tabBar" useStoryboardIdentifierAsRestorationIdentifier="YES" id="Xmz-U4-dAX" sceneMemberID="viewController">
                     <tabBar key="tabBar" contentMode="scaleToFill" id="MVY-4i-jXQ">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="49"/>
                         <autoresizingMask key="autoresizingMask"/>

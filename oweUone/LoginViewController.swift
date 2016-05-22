@@ -5,6 +5,14 @@
 //  Created by Xiaowen Feng on 5/17/16.
 //  Copyright © 2016 Xiaowen Feng, Peter Freschi, Quynh Huynh. All rights reserved.
 //
+//
+//  LoginViewController.swift
+//  oweUone
+//
+//  Created by Xiaowen Feng on 5/17/16.
+//  Copyright © 2016 Xiaowen Feng, Peter Freschi, Quynh Huynh. All rights reserved.
+//
+
 
 import UIKit
 
@@ -52,7 +60,7 @@ class LoginViewController: UIViewController {
                 self.firebaseLogin(credential)
                 
                 //when user logged in, automatically take user to the favors feed view
-                let nextView = (self.storyboard?.instantiateViewControllerWithIdentifier("favorsFeed"))! as UIViewController
+                let nextView = (self.storyboard?.instantiateViewControllerWithIdentifier("tabBar"))! as UIViewController
                 self.presentViewController(nextView, animated: true, completion: nil)
             }
         })
@@ -78,7 +86,7 @@ class LoginViewController: UIViewController {
         
         if (FIRAuth.auth()?.currentUser?.linkWithCredential) != nil {
             
-            print("Current user is been linked with a firebase credential.")
+            print("Current user has been linked with a firebase credential.")
             
         } else {
             
@@ -106,5 +114,4 @@ class LoginViewController: UIViewController {
     }
     
 }
-
 

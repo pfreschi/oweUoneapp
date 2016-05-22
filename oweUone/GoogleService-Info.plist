@@ -37,8 +37,4 @@
 	<key>DATABASE_URL</key>
 	<string>https://oweuone.firebaseio.com</string>
 </dict>
-<<<<<<< HEAD
 </plist>
-=======
-</plist>
->>>>>>> 33120622fb4b089a20a99c3b5a07938cb6a51b26

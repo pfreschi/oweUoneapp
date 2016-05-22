@@ -21,7 +21,7 @@ class PostFavorViewController: UIViewController {
         let fbProxy = FirebaseProxy()
         
         if (favorTitle.text != nil && favorDescription.text != nil && tokenAmount.text != nil){
-            fbProxy.saveFavor(favorTitle.text!, description: favorDescription.text!, tokenAmount: Int(tokenAmount.text!)!, creator: "this should be creator's id")
+            //fbProxy.saveFavor(favorTitle.text!, description: favorDescription.text!, tokenAmount: Int(tokenAmount.text!)!, creator: "this should be creator's id")
         }
         
         

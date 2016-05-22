@@ -6,26 +6,82 @@
 //  Copyright © 2016 Xiaowen Feng, Peter Freschi, Quynh Huynh. All rights reserved.
 //
 
-import Foundation
+import UIKit
 import Firebase
 
-class Favor {
-    var time : NSDate
-    var title : String
-    var description : String
-    var tokenAmount : String
-    var creator : String
-    var finisher : String
-    var completed : String
-
+class Favor: NSObject {
+    private var _favorRef: FIRDatabaseReference!
     
-    init(time : NSDate, title : String, description : String, tokenAmount : String, creator : String, finisher : String, completed : String) {
-        self.time = time
-        self.title = title
-        self.description = description
-        self.tokenAmount = tokenAmount
-        self.creator = creator
-        self.finisher = finisher
-        self.completed = completed
+    private var _key: String!
+    private var _creator: String!
+    private var _descr: String!
+    private var _finisher: String!
+    //  var time: NSDate = isEqualToDate(<#T##NSDate#>)
+    private var _title: String!
+    private var _tokenAmt: Int!
+    private var _completion: Bool!
+    
+    var key: String {
+        return _key
     }
+    
+    var creator: String {
+        return _creator
+    }
+    
+    var descr: String {
+        return _descr
+    }
+    
+    var finisher: String {
+        return _finisher
+    }
+    
+    var title: String {
+        return _title
+    }
+    
+    var tokenAmt: Int {
+        return _tokenAmt
+    }
+    
+    var completion: Bool {
+        return _completion
+    }
+    
+    init(key: String, dictionary: Dictionary<String, AnyObject>) {
+        self._key = key
+        
+        if let newCreator = dictionary["creator"] as? String {
+            self._creator = newCreator
+        }
+        
+        if let newDescr = dictionary["descr"] as? String {
+            self._descr = newDescr
+        }
+        
+        if let newFinisher = dictionary["finisher"] as? String {
+            self._finisher = newFinisher
+        }
+        
+        if let newTitle = dictionary["title"] as? String {
+            self._title = newTitle
+        }
+        
+        if let newTokenAmt = dictionary["tokenAmt"] as? Int {
+            self._tokenAmt = newTokenAmt
+        }
+        
+        if let newCompletion = dictionary["completion"] as? Bool {
+            self._completion = newCompletion
+        }
+        
+        //the above properties added to their key?!
+        self._favorRef = FirebaseProxy.firebaseProxy.favorRef.child(self._key)
+        
+    }
+    
+    
+    
 }
+

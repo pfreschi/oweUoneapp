@@ -53,7 +53,7 @@ class LoginViewController: UIViewController {
                 
             } else {
                 
-                //self.getProfilePic()
+                self.getProfilePic()
                 
                 // use FB Access token to switch for a firebase access token
                 let credential = FIRFacebookAuthProvider.credentialWithAccessToken(FBSDKAccessToken.currentAccessToken().tokenString)
@@ -66,21 +66,23 @@ class LoginViewController: UIViewController {
         })
     }
     
-    /*
+    
      func getProfilePic() {
-     if FBSDKAccessToken.currentAccessToken() != nil {
-     let graphRequest = FBSDKGraphRequest(graphPath: "me", parameters: ["fields": "id, name, email"])
-     graphRequest.startWithCompletionHandler({ (connection, user, requestError) -> Void in
+         if FBSDKAccessToken.currentAccessToken() != nil {
+         let graphRequest = FBSDKGraphRequest(graphPath: "me", parameters: ["fields": "id, name, email"])
+            graphRequest.startWithCompletionHandler({ (connection, user, requestError) -> Void in
+         
+             // get user FB profile picture
+             let FBid = user.valueForKey("id") as? String
+              NSUserDefaults.standardUserDefaults().setValue(FBid, forKey: "FBid")
+                
+             //let url = NSURL(string: "https://graph.facebook.com/\(FBid!)/picture?type=large&return_ssl_resources=1")
+           //  self.imageView.image = UIImage(data: NSData(contentsOfURL: url!)!)
      
-     // get user FB profile picture
-     let FBid = user.valueForKey("id") as? String
-     let url = NSURL(string: "https://graph.facebook.com/\(FBid!)/picture?type=large&return_ssl_resources=1")
-     self.imageView.image = UIImage(data: NSData(contentsOfURL: url!)!)
-     
-     })
+            })
+        }
      }
-     }
-     */
+    
     
     func firebaseLogin(credential: FIRAuthCredential) {
         
@@ -103,9 +105,13 @@ class LoginViewController: UIViewController {
                         let newUser : [String: String] = [
                             "provider": profile.providerID,
                             "Name": profile.displayName!,
-                            "Email": profile.email!
+                            "Email": profile.email!,
+                           // "School": "University of Washington"
                         ]
                         self.rootRef.child("users").child(profile.uid).setValue(newUser)
+                        
+                        // store the uid for future access
+                      //  NSUserDefaults.standardUserDefaults().setValue(profile.uid, forKey: "uid")
                         
                     }
                 }

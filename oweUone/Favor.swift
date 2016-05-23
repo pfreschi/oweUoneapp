@@ -56,7 +56,7 @@ class Favor: NSObject {
     init(key: String, dictionary: Dictionary<String, AnyObject>) {
         self._key = key
         if let newTime = dictionary["time"] as? String {
-            self._creator = newTime
+            self._time = newTime
         }
 
         if let newCreator = dictionary["creator"] as? String {

@@ -25,6 +25,8 @@
 		AEDD85DA1CEBFFE30041440E /* FavorDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEDD85D91CEBFFE30041440E /* FavorDetailViewController.swift */; };
 		AEDD85DC1CEC00030041440E /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEDD85DB1CEC00030041440E /* ProfileViewController.swift */; };
 		AEDD85DE1CEC00220041440E /* PostFavorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEDD85DD1CEC00220041440E /* PostFavorViewController.swift */; };
+		F4A4FFB21CF386DE00BAAC03 /* CustomFavorCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4A4FFB11CF386DE00BAAC03 /* CustomFavorCell.swift */; };
+		F4A4FFB41CF3A28400BAAC03 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4A4FFB31CF3A28400BAAC03 /* User.swift */; };
 		F4C6D18D1CEC086B001B5D2B /* MyFavorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4C6D18C1CEC086B001B5D2B /* MyFavorViewController.swift */; };
 		F4C6D18F1CEC3183001B5D2B /* FirebaseProxy.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4C6D18E1CEC3183001B5D2B /* FirebaseProxy.swift */; };
 		F4D0DA0C1CEE375A0091793A /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = F4D0DA0B1CEE375A0091793A /* .gitignore */; };
@@ -82,6 +84,8 @@
 		AEDD85DB1CEC00030041440E /* ProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		AEDD85DD1CEC00220041440E /* PostFavorViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostFavorViewController.swift; sourceTree = "<group>"; };
 		C983C79DB4DAA5F4E36BFB84 /* Pods-oweUone.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-oweUone.debug.xcconfig"; path = "Pods/Target Support Files/Pods-oweUone/Pods-oweUone.debug.xcconfig"; sourceTree = "<group>"; };
+		F4A4FFB11CF386DE00BAAC03 /* CustomFavorCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomFavorCell.swift; sourceTree = "<group>"; };
+		F4A4FFB31CF3A28400BAAC03 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		F4C6D18C1CEC086B001B5D2B /* MyFavorViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyFavorViewController.swift; sourceTree = "<group>"; };
 		F4C6D18E1CEC3183001B5D2B /* FirebaseProxy.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FirebaseProxy.swift; sourceTree = "<group>"; };
 		F4D0DA0B1CEE375A0091793A /* .gitignore */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
@@ -180,6 +184,7 @@
 				AE6807DB1CE56F60004CFE60 /* AppDelegate.swift */,
 				AE6807DD1CE56F60004CFE60 /* ViewController.swift */,
 				AE733E4C1CEBF8EB00061A9B /* Favor.swift */,
+				F4A4FFB31CF3A28400BAAC03 /* User.swift */,
 				F4FCAB5E1CF2D88C0035DF52 /* PhoneNumberViewController.swift */,
 				AEDD85D51CEBFF5B0041440E /* LoginViewController.swift */,
 				AEDD85D91CEBFFE30041440E /* FavorDetailViewController.swift */,
@@ -194,6 +199,7 @@
 				F4D0DA0B1CEE375A0091793A /* .gitignore */,
 				AE6807E41CE56F60004CFE60 /* LaunchScreen.storyboard */,
 				AE6807E71CE56F60004CFE60 /* Info.plist */,
+				F4A4FFB11CF386DE00BAAC03 /* CustomFavorCell.swift */,
 			);
 			path = oweUone;
 			sourceTree = "<group>";
@@ -483,6 +489,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F4A4FFB41CF3A28400BAAC03 /* User.swift in Sources */,
 				AEDD85D61CEBFF5B0041440E /* LoginViewController.swift in Sources */,
 				F4FCAB5F1CF2D88C0035DF52 /* PhoneNumberViewController.swift in Sources */,
 				AE6807DE1CE56F60004CFE60 /* ViewController.swift in Sources */,
@@ -492,6 +499,7 @@
 				AEDD85DC1CEC00030041440E /* ProfileViewController.swift in Sources */,
 				F4C6D18D1CEC086B001B5D2B /* MyFavorViewController.swift in Sources */,
 				AE733E4D1CEBF8EB00061A9B /* Favor.swift in Sources */,
+				F4A4FFB21CF386DE00BAAC03 /* CustomFavorCell.swift in Sources */,
 				AEDD85D81CEBFFA70041440E /* FavorFeedViewController.swift in Sources */,
 				F4C6D18F1CEC3183001B5D2B /* FirebaseProxy.swift in Sources */,
 			);

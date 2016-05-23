@@ -141,10 +141,10 @@ class FavorFeedViewController: UIViewController, UITableViewDataSource, UITableV
     
     func getProfPic(fid: String) -> UIImage? {
         if (fid != "") {
-            var imgURLString = "https://graph.facebook.com/" + fid + "/picture?type=large" //type=normal
-            var imgURL = NSURL(string: imgURLString)
-            var imageData = NSData(contentsOfURL: imgURL!)
-            var image = UIImage(data: imageData!)
+            let imgURLString = "https://graph.facebook.com/" + fid + "/picture?type=large" //type=normal
+            let imgURL = NSURL(string: imgURLString)
+            let imageData = NSData(contentsOfURL: imgURL!)
+            let image = UIImage(data: imageData!)
             return image
         }
         return nil

@@ -1,11 +1,3 @@
-//
-//  LoginViewController.swift
-//  oweUone
-//
-//  Created by Xiaowen Feng on 5/17/16.
-//  Copyright © 2016 Xiaowen Feng, Peter Freschi, Quynh Huynh. All rights reserved.
-//
-//
 //  LoginViewController.swift
 //  oweUone
 //
@@ -35,6 +27,7 @@ class LoginViewController: UIViewController {
                                         "Phone": ""
                                     ]
     
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -48,6 +41,7 @@ class LoginViewController: UIViewController {
     
     @IBAction func FBlogin(sender: AnyObject) {
         let FBlogin = FBSDKLoginManager()
+        
         
         FBlogin.logInWithReadPermissions(["email"], fromViewController: self, handler: {(result, error) -> Void in
             if let error = error {
@@ -143,6 +137,7 @@ class LoginViewController: UIViewController {
                     return
                 } else {
                     
+                    
                     // add the new user to Firebase database
                     for profile in user!.providerData {
                             let userUid = profile.uid
@@ -155,9 +150,27 @@ class LoginViewController: UIViewController {
                             // prompts a alert controller to ask for user phone number
                             self.getPhoneNumAlert(userUid)
                         
-                        // store the uid for future access
-                      //  NSUserDefaults.standardUserDefaults().setValue(profile.uid, forKey: "uid")
+
+
                         
+                        
+                        //add school to database? implement later
+                        /*
+                        self.rootRef.observeEventType(.Value, withBlock: { (snapshot) in
+                            print(snapshot.value)
+
+                            if let schools = snapshot.childSnapshotForPath("schools") as FIRDataSnapshot! {
+                                        if let schoolDict = schools.value as? Dictionary<String, AnyObject> {
+                                        print(schoolDict)
+                                        //let key = snap.key
+                                        //let favor = Favor(key: key, dictionary: favorDict)
+                                        
+                                        //self.favorsList.insert(favor, atIndex: 0)
+                                    }
+                                }
+                            })
+                        */
+
                     }
                 }
             }

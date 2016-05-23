@@ -24,13 +24,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     override init() {
         // Firebase Init
         FIRApp.configure()
+        FIRDatabase.database().persistenceEnabled = true
+        
     }
     
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         // Override point for customization after application launch.
-       // FIRApp.configure()
-
-       // FIRDatabase.database().persistenceEnabled = true
         return FBSDKApplicationDelegate.sharedInstance()
             .application(application, didFinishLaunchingWithOptions: launchOptions)
     }

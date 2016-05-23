@@ -16,6 +16,8 @@ class FavorFeedViewController: UIViewController, UITableViewDataSource, UITableV
     
     var favorsList = [Favor]()
     
+    var usersList = [User]()
+    
     @IBOutlet weak var tableView: UITableView!
     
     
@@ -31,8 +33,6 @@ class FavorFeedViewController: UIViewController, UITableViewDataSource, UITableV
             
             if let snapshots = snapshot.children.allObjects as? [FIRDataSnapshot] {
                 for snap in snapshots {
-                    // print(snap.value)
-                    
                     if let favorDict = snap.value as? Dictionary<String, AnyObject> {
                         let key = snap.key
                         let favor = Favor(key: key, dictionary: favorDict)
@@ -44,6 +44,26 @@ class FavorFeedViewController: UIViewController, UITableViewDataSource, UITableV
             
             self.tableView.reloadData()
         })
+        
+        rootRef.child("users").observeEventType(.Value, withBlock: { (snapshot) in
+            print(snapshot.value)
+            
+            self.usersList = []
+            
+            if let snapshots = snapshot.children.allObjects as? [FIRDataSnapshot] {
+                for snap in snapshots {
+                    if let userDict = snap.value as? Dictionary<String, AnyObject> {
+                        let uid = snap.key
+                        let user = User(key: uid, dictionary: userDict)
+                        
+                        self.usersList.insert(user, atIndex: 0)
+                    }
+                }
+            }
+            
+            self.tableView.reloadData()
+        })
+
         
     }
     
@@ -76,20 +96,61 @@ class FavorFeedViewController: UIViewController, UITableViewDataSource, UITableV
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         
-        let cell = tableView.dequeueReusableCellWithIdentifier("Cell") as UITableViewCell!
+        let cell = tableView.dequeueReusableCellWithIdentifier("Cell") as! CustomFavorCell
         
-        cell?.textLabel?.text = self.favorsList[indexPath.row].title
-        cell?.detailTextLabel?.text = "\(self.favorsList[indexPath.row].descr) created by \(self.favorsList[indexPath.row].creator)"
+        cell.favorTitle.text = self.favorsList[indexPath.row].title
+        cell.earnTokens.text = "earn \(self.favorsList[indexPath.row].tokenAmount) tokens"
         
-        //cell.textLabel?.text = "Favor Title"
         
-        //let image : UIImage = //user's facebook profile picture (retrieve using SDK)
-        //cell!.imageView!.image = image
+        let postCreatorID = self.favorsList[indexPath.row].creator
+        var postCreatorName = "Unknown"
         
-        //cell?.detailTextLabel?.text = "this should be brief information about the favor like tokens, time stamp and person name who posted the favor"
-        return cell!
+        for user in usersList {
+            if (user.key == postCreatorID) {
+                postCreatorName = user.name
+            }
+        }
+        
+        
+        
+        let postTime = self.favorsList[indexPath.row].time
+        let localeStr = "us"
+        
+        let dateFormatter = NSDateFormatter()
+        dateFormatter.locale = NSLocale(localeIdentifier: localeStr)
+        dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss zzz"
+        let date: NSDate? = dateFormatter.dateFromString(postTime)
+        cell.postedTime.text = "posted \(FirebaseProxy.firebaseProxy.timeAgoSinceDate(date!, numericDates: true)) by \(postCreatorName)"
+        
+        
+        
+        //add profile pic of creator
+        let creatorProfPic = getProfPic(self.favorsList[indexPath.row].creator)
+        if (creatorProfPic != nil) {
+            cell.favorPhoto.image = creatorProfPic
+        }
+        
+        
+        2
+        cell.favorPhoto.layer.cornerRadius = cell.favorPhoto.frame.size.width / 2;
+        cell.favorPhoto.clipsToBounds = true;
+        
+        return cell
         
     }
+    
+    func getProfPic(fid: String) -> UIImage? {
+        if (fid != "") {
+            let imgURLString = "https://graph.facebook.com/" + fid + "/picture?type=large" //type=normal
+            let imgURL = NSURL(string: imgURLString)
+            let imageData = NSData(contentsOfURL: imgURL!)
+            let image = UIImage(data: imageData!)
+            return image
+        }
+        return nil
+    }
+    
+    
     
     
 }

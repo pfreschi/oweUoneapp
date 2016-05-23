@@ -22,6 +22,7 @@ class FirebaseProxy: NSObject {
     private var _favorRef = FIRDatabase.database().reference().child("favors")
     private var _userRef = FIRDatabase.database().reference().child("users")
     
+    
     var favorRef: FIRDatabaseReference {
         return _favorRef
     }
@@ -42,29 +43,108 @@ class FirebaseProxy: NSObject {
      - creator: user Id of who created the favor
      - finisher: user Id of who completed the favor (not sure what to set this to if
      */
-    func saveFavor(id: Int, title: String, description: String, tokenAmount: Int, creator: Int, finisher: Int) {
+    func saveFavor(title: String, descr: String, tokenAmount: Int, creator: String) {
         // time
         // favor name
         // description
         // token amount
         // giving user
         // user who completes task
+        
         let timeCreated = String(NSDate())
-        let favor: [String:String] = [
+        
+        let newFavorDetails: [String:AnyObject] = [
             "time" : timeCreated,
             "title" : title,
-            "description" : description,
-            "tokenAmount:" : String(tokenAmount),
-            "creator" : String(creator),
-            "finisher" : String(finisher),
-            "completed" : "false" // added this here so later we can mark which ones have been completed
+            "descr" : descr,
+            "tokenAmount" : tokenAmount,
+            "creator" : creator,
+            "finisher" : "",
+            "completed" : false
         ]
-        myRootRef.setValue(favor)
+        FirebaseProxy.firebaseProxy.favorRef.childByAutoId().setValue(newFavorDetails)
     }
     
     func getTask() {
         
     }
+    
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    //fair use of function from jacks205 on GitHub
+    func timeAgoSinceDate(date:NSDate, numericDates:Bool) -> String {
+        let calendar = NSCalendar.currentCalendar()
+        let now = NSDate()
+        let earliest = now.earlierDate(date)
+        let latest = (earliest == now) ? date : now
+        let components:NSDateComponents = calendar.components([NSCalendarUnit.Minute , NSCalendarUnit.Hour , NSCalendarUnit.Day , NSCalendarUnit.WeekOfYear , NSCalendarUnit.Month , NSCalendarUnit.Year , NSCalendarUnit.Second], fromDate: earliest, toDate: latest, options: NSCalendarOptions())
+        
+        if (components.year >= 2) {
+            return "\(components.year) years ago"
+        } else if (components.year >= 1){
+            if (numericDates){
+                return "1 year ago"
+            } else {
+                return "last year"
+            }
+        } else if (components.month >= 2) {
+            return "\(components.month) months ago"
+        } else if (components.month >= 1){
+            if (numericDates){
+                return "1 month ago"
+            } else {
+                return "last month"
+            }
+        } else if (components.weekOfYear >= 2) {
+            return "\(components.weekOfYear) weeks ago"
+        } else if (components.weekOfYear >= 1){
+            if (numericDates){
+                return "1 week ago"
+            } else {
+                return "last week"
+            }
+        } else if (components.day >= 2) {
+            return "\(components.day) days ago"
+        } else if (components.day >= 1){
+            if (numericDates){
+                return "1 day ago"
+            } else {
+                return "yesterday"
+            }
+        } else if (components.hour >= 2) {
+            return "\(components.hour) hours ago"
+        } else if (components.hour >= 1){
+            if (numericDates){
+                return "1 hour ago"
+            } else {
+                return "an hour ago"
+            }
+        } else if (components.minute >= 2) {
+            return "\(components.minute) minutes ago"
+        } else if (components.minute >= 1){
+            if (numericDates){
+                return "1 minute ago"
+            } else {
+                return "a minute ago"
+            }
+        } else if (components.second >= 3) {
+            return "\(components.second) seconds ago"
+        } else {
+            return "just now"
+        }
+        
+    }
+    
+    
+    
 }
 
 

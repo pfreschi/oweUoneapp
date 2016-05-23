@@ -22,6 +22,8 @@ class LoginViewController: UIViewController {
     let rootRef = FIRDatabase.database().reference()
     var imageView : UIImageView!
     
+    var enteredPhoneNumber : String = ""
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -35,6 +37,7 @@ class LoginViewController: UIViewController {
     
     @IBAction func FBlogin(sender: AnyObject) {
         let FBlogin = FBSDKLoginManager()
+        
         
         FBlogin.logInWithReadPermissions(["email"], fromViewController: self, handler: {(result, error) -> Void in
             if let error = error {
@@ -77,7 +80,6 @@ class LoginViewController: UIViewController {
     func firebaseLogin(credential: FIRAuthCredential) {
         
         if (FIRAuth.auth()?.currentUser?.linkWithCredential) != nil {
-            
             print("Current user has been linked with a firebase credential.")
             
         } else {
@@ -90,15 +92,49 @@ class LoginViewController: UIViewController {
                     return
                 } else {
                     
+                    //force user to give phone number
+                    print("phone number is \(self.enteredPhoneNumber)")
+                    if (self.enteredPhoneNumber == "") {
+                        dispatch_async(dispatch_get_main_queue()){
+                            self.performSegueWithIdentifier("requestPhone", sender: self)
+                        }
+                    }
+                    
+                    
                     // add the new user to Firebase database
                     for profile in user!.providerData {
-                        let newUser : [String: String] = [
+                        var newUser : [String: String] = [
                             "provider": profile.providerID,
                             "Name": profile.displayName!,
-                            "Email": profile.email!
+                            "Email": profile.email!,
+                            "School" : "University of Washington"
+                            //school should be more flexible in the future, with FB's approval for access to this data
                         ]
+                        
+                    
+                        newUser["Phone"] = self.enteredPhoneNumber
+                        
+                        //store
                         self.rootRef.child("users").child(profile.uid).setValue(newUser)
                         
+                        
+                        //add school to database? implement later
+                        /*
+                        self.rootRef.observeEventType(.Value, withBlock: { (snapshot) in
+                            print(snapshot.value)
+
+                            if let schools = snapshot.childSnapshotForPath("schools") as FIRDataSnapshot! {
+                                        if let schoolDict = schools.value as? Dictionary<String, AnyObject> {
+                                        print(schoolDict)
+                                        //let key = snap.key
+                                        //let favor = Favor(key: key, dictionary: favorDict)
+                                        
+                                        //self.favorsList.insert(favor, atIndex: 0)
+                                    }
+                                }
+                            })
+                        */
+
                     }
                 }
             }

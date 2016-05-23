@@ -36,7 +36,7 @@ class FirebaseProxy: NSObject {
      - creator: user Id of who created the favor
      - finisher: user Id of who completed the favor (not sure what to set this to if
      */
-    func saveFavor(title: String, description: String, tokenAmount: Int, creator: String) {
+    func saveFavor(title: String, descr: String, tokenAmount: Int, creator: String) {
         // time
         // favor name
         // description
@@ -49,8 +49,8 @@ class FirebaseProxy: NSObject {
         let newFavorDetails: [String:AnyObject] = [
             "time" : timeCreated,
             "title" : title,
-            "descr" : description,
-            "tokenAmt:" : tokenAmount,
+            "descr" : descr,
+            "tokenAmount:" : tokenAmount,
             "creator" : creator,
             "finisher" : "",
             "completed" : false

@@ -22,7 +22,7 @@ class PostFavorViewController: UIViewController {
             for profile in user.providerData {
                 let uid = profile.uid;  // Provider-specific UID
                 if (favorTitle.text != nil && favorDescription.text != nil && tokenAmount.text != nil){
-                    FirebaseProxy.firebaseProxy.saveFavor(favorTitle.text!, description: favorDescription.text!, tokenAmount: Int(tokenAmount.text!)!, creator: uid)
+                    FirebaseProxy.firebaseProxy.saveFavor(favorTitle.text!, descr: favorDescription.text!, tokenAmount: Int(tokenAmount.text!)!, creator: uid)
                 }
                 
 

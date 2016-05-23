@@ -84,12 +84,25 @@ class FavorFeedViewController: UIViewController, UITableViewDataSource, UITableV
         //cell.textLabel?.text = "Favor Title"
         
         //let image : UIImage = //user's facebook profile picture (retrieve using SDK)
-        //cell!.imageView!.image = image
+        cell!.imageView!.image = getProfPic(self.favorsList[indexPath.row].creator)
         
         //cell?.detailTextLabel?.text = "this should be brief information about the favor like tokens, time stamp and person name who posted the favor"
         return cell!
         
     }
+    
+    func getProfPic(fid: String) -> UIImage? {
+        if (fid != "") {
+            var imgURLString = "https://graph.facebook.com/" + fid + "/picture?type=large" //type=normal
+            var imgURL = NSURL(string: imgURLString)
+            var imageData = NSData(contentsOfURL: imgURL!)
+            var image = UIImage(data: imageData!)
+            return image
+        }
+        return nil
+    }
+    
+    
     
     
 }

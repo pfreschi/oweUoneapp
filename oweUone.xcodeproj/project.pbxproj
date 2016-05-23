@@ -31,6 +31,7 @@
 		F4E2C6471CF149E400E43462 /* FBSDKCoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F4E2C6461CF149E400E43462 /* FBSDKCoreKit.framework */; };
 		F4E2C6491CF149EE00E43462 /* FBSDKLoginKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F4E2C6481CF149EE00E43462 /* FBSDKLoginKit.framework */; };
 		F4E2C64D1CF14AC300E43462 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = F4E2C64C1CF14AC300E43462 /* GoogleService-Info.plist */; };
+		F4FCAB5F1CF2D88C0035DF52 /* PhoneNumberViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4FCAB5E1CF2D88C0035DF52 /* PhoneNumberViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -87,6 +88,7 @@
 		F4E2C6461CF149E400E43462 /* FBSDKCoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKCoreKit.framework; sourceTree = "<group>"; };
 		F4E2C6481CF149EE00E43462 /* FBSDKLoginKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKLoginKit.framework; sourceTree = "<group>"; };
 		F4E2C64C1CF14AC300E43462 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		F4FCAB5E1CF2D88C0035DF52 /* PhoneNumberViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhoneNumberViewController.swift; sourceTree = "<group>"; };
 		FBAF38646FCAD2489DBAA29B /* Pods-oweUoneTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-oweUoneTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-oweUoneTests/Pods-oweUoneTests.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -178,6 +180,7 @@
 				AE6807DB1CE56F60004CFE60 /* AppDelegate.swift */,
 				AE6807DD1CE56F60004CFE60 /* ViewController.swift */,
 				AE733E4C1CEBF8EB00061A9B /* Favor.swift */,
+				F4FCAB5E1CF2D88C0035DF52 /* PhoneNumberViewController.swift */,
 				AEDD85D51CEBFF5B0041440E /* LoginViewController.swift */,
 				AEDD85D91CEBFFE30041440E /* FavorDetailViewController.swift */,
 				AEDD85DB1CEC00030041440E /* ProfileViewController.swift */,
@@ -481,6 +484,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				AEDD85D61CEBFF5B0041440E /* LoginViewController.swift in Sources */,
+				F4FCAB5F1CF2D88C0035DF52 /* PhoneNumberViewController.swift in Sources */,
 				AE6807DE1CE56F60004CFE60 /* ViewController.swift in Sources */,
 				AEDD85DA1CEBFFE30041440E /* FavorDetailViewController.swift in Sources */,
 				AEDD85DE1CEC00220041440E /* PostFavorViewController.swift in Sources */,

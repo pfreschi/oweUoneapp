@@ -18,7 +18,7 @@ class Favor: NSObject {
     private var _descr: String!
     private var _finisher: String!
     private var _title: String!
-    private var _tokenAmt: Int!
+    private var _tokenAmount: Int!
     private var _completion: Bool!
     
     var key: String {
@@ -36,7 +36,7 @@ class Favor: NSObject {
     var descr: String {
         return _descr
     }
-    
+        
     var finisher: String {
         return _finisher
     }
@@ -45,8 +45,8 @@ class Favor: NSObject {
         return _title
     }
     
-    var tokenAmt: Int {
-        return _tokenAmt
+    var tokenAmount: Int {
+        return _tokenAmount
     }
     
     var completion: Bool {
@@ -75,8 +75,8 @@ class Favor: NSObject {
             self._title = newTitle
         }
         
-        if let newTokenAmt = dictionary["tokenAmt"] as? Int {
-            self._tokenAmt = newTokenAmt
+        if let newTokenAmount = dictionary["tokenAmount"] as? Int {
+            self._tokenAmount = newTokenAmount
         }
         
         if let newCompletion = dictionary["completion"] as? Bool {

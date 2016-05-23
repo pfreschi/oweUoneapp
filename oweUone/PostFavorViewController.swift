@@ -18,14 +18,30 @@ class PostFavorViewController: UIViewController {
     
     @IBAction func postFavor(sender: AnyObject) {
         
-        let fbProxy = FirebaseProxy()
-        
-        if (favorTitle.text != nil && favorDescription.text != nil && tokenAmount.text != nil){
-            //fbProxy.saveFavor(favorTitle.text!, description: favorDescription.text!, tokenAmount: Int(tokenAmount.text!)!, creator: "this should be creator's id")
+        if let user = FIRAuth.auth()?.currentUser {
+            for profile in user.providerData {
+                let uid = profile.uid;  // Provider-specific UID
+                if (favorTitle.text != nil && favorDescription.text != nil && tokenAmount.text != nil){
+                    FirebaseProxy.firebaseProxy.saveFavor(favorTitle.text!, description: favorDescription.text!, tokenAmount: Int(tokenAmount.text!)!, creator: uid)
+                }
+                
+
+            }
+            
+        } else {
+            // No user is signed in.
         }
+
+        
         
         
         
     }
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        print(FIRAuth.auth()?.currentUser?.displayName)
+        print(FIRAuth.auth()?.currentUser?.uid)
+            }
     
 }

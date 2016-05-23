@@ -36,24 +36,26 @@ class FirebaseProxy: NSObject {
      - creator: user Id of who created the favor
      - finisher: user Id of who completed the favor (not sure what to set this to if
      */
-    func saveFavor(id: Int, title: String, description: String, tokenAmount: Int, creator: Int, finisher: Int) {
+    func saveFavor(title: String, description: String, tokenAmount: Int, creator: String) {
         // time
         // favor name
         // description
         // token amount
         // giving user
         // user who completes task
+        
         let timeCreated = String(NSDate())
-        let favor: [String:String] = [
+        
+        let newFavorDetails: [String:AnyObject] = [
             "time" : timeCreated,
             "title" : title,
-            "description" : description,
-            "tokenAmount:" : String(tokenAmount),
-            "creator" : String(creator),
-            "finisher" : String(finisher),
-            "completed" : "false" // added this here so later we can mark which ones have been completed
+            "descr" : description,
+            "tokenAmt:" : tokenAmount,
+            "creator" : creator,
+            "finisher" : "",
+            "completed" : false
         ]
-        myRootRef.setValue(favor)
+        FirebaseProxy.firebaseProxy.favorRef.childByAutoId().setValue(newFavorDetails)
     }
     
     func getTask() {

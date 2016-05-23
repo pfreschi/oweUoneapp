@@ -13,16 +13,20 @@ class Favor: NSObject {
     private var _favorRef: FIRDatabaseReference!
     
     private var _key: String!
+    private var _time: String!
     private var _creator: String!
     private var _descr: String!
     private var _finisher: String!
-    //  var time: NSDate = isEqualToDate(<#T##NSDate#>)
     private var _title: String!
     private var _tokenAmt: Int!
     private var _completion: Bool!
     
     var key: String {
         return _key
+    }
+    
+    var time: String {
+        return _time
     }
     
     var creator: String {
@@ -51,7 +55,10 @@ class Favor: NSObject {
     
     init(key: String, dictionary: Dictionary<String, AnyObject>) {
         self._key = key
-        
+        if let newTime = dictionary["time"] as? String {
+            self._creator = newTime
+        }
+
         if let newCreator = dictionary["creator"] as? String {
             self._creator = newCreator
         }

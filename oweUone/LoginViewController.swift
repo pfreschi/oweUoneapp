@@ -126,7 +126,7 @@ class LoginViewController: UIViewController {
             
             //when user logged in, automatically take user to the favors feed view
             showFeed()
-            
+         
         } else {
             
             //start a new firebase credential
@@ -147,6 +147,7 @@ class LoginViewController: UIViewController {
                             self.newUser["Email"] = profile.email!
                            // "School": "University of Washington"
                         
+                             
                             // prompts a alert controller to ask for user phone number
                             self.getPhoneNumAlert(userUid)
                         

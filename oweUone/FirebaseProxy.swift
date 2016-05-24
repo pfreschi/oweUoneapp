@@ -16,9 +16,11 @@ import Firebase
 class FirebaseProxy: NSObject {
     
     static let firebaseProxy = FirebaseProxy()
+    
     // Connect to Firebase DB
     private var _myRootRef = FIRDatabase.database().reference()
     private var _favorRef = FIRDatabase.database().reference().child("favors")
+    private var _userRef = FIRDatabase.database().reference().child("users")
     
     
     var favorRef: FIRDatabaseReference {
@@ -27,6 +29,10 @@ class FirebaseProxy: NSObject {
     
     var myRootRef: FIRDatabaseReference {
         return _myRootRef
+    }
+    
+    var userRef: FIRDatabaseReference {
+        return _userRef
     }
     
     /* saveFavor saves an *uncompleted* favor for the given user with the follow information:
@@ -140,6 +146,7 @@ class FirebaseProxy: NSObject {
     
     
 }
+
 
 
 

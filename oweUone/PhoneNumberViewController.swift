@@ -8,6 +8,7 @@
 
 import UIKit
 
+/*
 class PhoneNumberViewController: UIViewController {
 
     @IBOutlet weak var enteredNumber: UITextField!
@@ -32,12 +33,14 @@ class PhoneNumberViewController: UIViewController {
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == "Login" {
             if let destination = segue.destinationViewController as? LoginViewController {
-                destination.enteredPhoneNumber = self.enteredNumber.text!
+             //   destination.enteredPhoneNumber = self.enteredNumber.text!
             }
         }
     }
     
     
 }
+ 
+ */
 
 

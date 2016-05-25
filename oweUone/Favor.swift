@@ -79,7 +79,7 @@ class Favor: NSObject {
             self._tokenAmount = newTokenAmount
         }
         
-        if let newCompletion = dictionary["completion"] as? Bool {
+        if let newCompletion = dictionary["completed"] as? Bool {
             self._completion = newCompletion
         }
         

@@ -123,7 +123,6 @@ class LoginViewController: UIViewController {
         
         if (FIRAuth.auth()?.currentUser?.linkWithCredential) != nil {
             print("Current user has been linked with a firebase credential.")
-            
             //when user logged in, automatically take user to the favors feed view
             showFeed()
          

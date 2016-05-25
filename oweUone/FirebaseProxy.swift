@@ -62,22 +62,60 @@ class FirebaseProxy: NSObject {
             "finisher" : "",
             "completed" : false
         ]
-        FirebaseProxy.firebaseProxy.favorRef.childByAutoId().setValue(newFavorDetails)
+        let key = FirebaseProxy.firebaseProxy.myRootRef.childByAutoId().key
+        
+        let childUpdates = ["/favors/\(key)": newFavorDetails,
+                            "/users/\(newFavorDetails["creator"]!)/completedFavorsForOthers/\(key)": true]
+        FirebaseProxy.firebaseProxy.myRootRef.updateChildValues(childUpdates as [NSObject : AnyObject])
+        
+        
+        
+        
+        
+        //FirebaseProxy.firebaseProxy.favorRef.childByAutoId().setValue(newFavorDetails)
     }
     
     func getTask() {
         
     }
     
+    func markFavorAsCompleted(favorID: String, creatorID: String, finisherID: String) {
+        //sets favor completion status. adds favor to creator's recievedFavorsFromOthers, finisher's completedFavorsForOthers.
+        //LATER make sure to implement token deduction from creator to finisher.
+        
+        let childUpdates = ["/favors/\(favorID)/completed": true,
+                            "/users/\(creatorID)/recievedFavorsFromOthers/\(favorID)": true,
+                            "/users/\(finisherID)/completedFavorsForOthers/\(favorID)": true]
+        FirebaseProxy.firebaseProxy.myRootRef.updateChildValues(childUpdates as [NSObject : AnyObject])
 
+    }
+    
+    func markFavorAsIncomplete(favorID: String, creatorID: String, finisherID: String) {
+        
+    }
     
     
-    
-    
-    
-    
-    
-    
+    func getProfPic(fid: String) -> UIImage? {
+        if (fid != "") {
+            let imgURLString = "https://graph.facebook.com/" + fid + "/picture?type=large" //type=normal
+            let imgURL = NSURL(string: imgURLString)
+            let imageData = NSData(contentsOfURL: imgURL!)
+            let image = UIImage(data: imageData!)
+            return image
+        }
+        return nil
+    }
+
+    func convertStringDatetoNSDate(dateString : String) -> NSDate {
+        let localeStr = "us"
+        
+        let dateFormatter = NSDateFormatter()
+        dateFormatter.locale = NSLocale(localeIdentifier: localeStr)
+        dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss zzz"
+        let date: NSDate? = dateFormatter.dateFromString(dateString)
+        return date!
+    }
+
     
     //fair use of function from jacks205 on GitHub
     func timeAgoSinceDate(date:NSDate, numericDates:Bool) -> String {
@@ -146,6 +184,18 @@ class FirebaseProxy: NSObject {
     
     
 }
+
+
+
+/*
+ code to save a favor and add to user's completed favors. not being used right now.
+ 
+ let childUpdates = ["/favors/\(key)": newFavorDetails,
+                    "/users/\(newFavorDetails["creator"]!)/completedFavorsForOthers/\(key)": true]
+ FirebaseProxy.firebaseProxy.myRootRef.updateChildValues(childUpdates as [NSObject : AnyObject])
+ 
+ 
+ */
 
 
 

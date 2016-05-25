@@ -22,10 +22,10 @@ class LoginViewController: UIViewController {
     let rootRef = FIRDatabase.database().reference()
     var imageView : UIImageView!
     var newUser : [String: String] = [ "provider" : "",
-                                       "Name": "",
-                                       "Email": "",
-                                       "Phone": ""
-    ]
+                                        "Name": "",
+                                        "Email": "",
+                                        "Phone": ""
+                                    ]
     
     
     override func viewDidLoad() {
@@ -82,7 +82,7 @@ class LoginViewController: UIViewController {
             self.showFeed()
             self.setNeedsFocusUpdate()
             
-            
+
         })
         
         alertController.addAction(updateAction)
@@ -100,24 +100,24 @@ class LoginViewController: UIViewController {
         self.rootRef.child("users").child(userUid).setValue(self.newUser)
     }
     
-    // get user's info with facebook token
-    func getProfilePic() {
-        if FBSDKAccessToken.currentAccessToken() != nil {
-            let graphRequest = FBSDKGraphRequest(graphPath: "me", parameters: ["fields": "id, name, email"])
+     // get user's info with facebook token
+     func getProfilePic() {
+         if FBSDKAccessToken.currentAccessToken() != nil {
+         let graphRequest = FBSDKGraphRequest(graphPath: "me", parameters: ["fields": "id, name, email"])
             graphRequest.startWithCompletionHandler({ (connection, user, requestError) -> Void in
-                
+         
                 // get user FB profile picture
                 let FBid = user.valueForKey("id") as? String
-                
+            
                 // store facebook ID for future access
                 NSUserDefaults.standardUserDefaults().setValue(FBid, forKey: "FBid")
-                
-                //let url = NSURL(string: "https://graph.facebook.com/\(FBid!)/picture?type=large&return_ssl_resources=1")
-                // self.imageView.image = UIImage(data: NSData(contentsOfURL: url!)!)
-                
+                    
+             //let url = NSURL(string: "https://graph.facebook.com/\(FBid!)/picture?type=large&return_ssl_resources=1")
+            // self.imageView.image = UIImage(data: NSData(contentsOfURL: url!)!)
+     
             })
         }
-    }
+     }
     
     func firebaseLogin(credential: FIRAuthCredential) {
         
@@ -126,7 +126,7 @@ class LoginViewController: UIViewController {
             
             //when user logged in, automatically take user to the favors feed view
             showFeed()
-            
+         
         } else {
             
             //start a new firebase credential
@@ -140,16 +140,19 @@ class LoginViewController: UIViewController {
                     
                     // add the new user to Firebase database
                     for profile in user!.providerData {
-                        let userUid = profile.uid
+                            let userUid = profile.uid
                         
-                        self.newUser["provider"] = profile.providerID
-                        self.newUser["Name"] = profile.displayName!
-                        self.newUser["Email"] = profile.email!
-                        // "School": "University of Washington"
+                            self.newUser["provider"] = profile.providerID
+                            self.newUser["Name"] = profile.displayName!
+                            self.newUser["Email"] = profile.email!
+                           // "School": "University of Washington"
                         
+                             
+                            // prompts a alert controller to ask for user phone number
+                            self.getPhoneNumAlert(userUid)
                         
-                        // prompts a alert controller to ask for user phone number
-                        self.getPhoneNumAlert(userUid)
+
+
                         
                         
                         

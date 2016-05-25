@@ -65,6 +65,7 @@ class ProfileViewController: UIViewController {
         let url = NSURL(string: "https://graph.facebook.com/\(FBid!)/picture?type=large&return_ssl_resources=1")
         self.profilePic.image = UIImage(data: NSData(contentsOfURL: url!)!)
         self.profilePic.layer.cornerRadius = self.profilePic.frame.size.width / 2;
+        self.profilePic.clipsToBounds = true;
 
     }
  

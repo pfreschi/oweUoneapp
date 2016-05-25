@@ -154,23 +154,26 @@ class LoginViewController: UIViewController {
 
                         
                         
+                        
+                        
+                        
                         //add school to database? implement later
                         /*
-                        self.rootRef.observeEventType(.Value, withBlock: { (snapshot) in
-                            print(snapshot.value)
-
-                            if let schools = snapshot.childSnapshotForPath("schools") as FIRDataSnapshot! {
-                                        if let schoolDict = schools.value as? Dictionary<String, AnyObject> {
-                                        print(schoolDict)
-                                        //let key = snap.key
-                                        //let favor = Favor(key: key, dictionary: favorDict)
-                                        
-                                        //self.favorsList.insert(favor, atIndex: 0)
-                                    }
-                                }
-                            })
-                        */
-
+                         self.rootRef.observeEventType(.Value, withBlock: { (snapshot) in
+                         print(snapshot.value)
+                         
+                         if let schools = snapshot.childSnapshotForPath("schools") as FIRDataSnapshot! {
+                         if let schoolDict = schools.value as? Dictionary<String, AnyObject> {
+                         print(schoolDict)
+                         //let key = snap.key
+                         //let favor = Favor(key: key, dictionary: favorDict)
+                         
+                         //self.favorsList.insert(favor, atIndex: 0)
+                         }
+                         }
+                         })
+                         */
+                        
                     }
                 }
             }
@@ -178,4 +181,3 @@ class LoginViewController: UIViewController {
     }
     
 }
-

@@ -18,6 +18,7 @@ class FavorFeedViewController: UIViewController, UITableViewDataSource, UITableV
     
     var usersList = [User]()
     
+    
     @IBOutlet weak var tableView: UITableView!
     
     
@@ -111,21 +112,16 @@ class FavorFeedViewController: UIViewController, UITableViewDataSource, UITableV
             }
         }
         
-        
-        
         let postTime = self.favorsList[indexPath.row].time
-        let localeStr = "us"
         
-        let dateFormatter = NSDateFormatter()
-        dateFormatter.locale = NSLocale(localeIdentifier: localeStr)
-        dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss zzz"
-        let date: NSDate? = dateFormatter.dateFromString(postTime)
-        cell.postedTime.text = "posted \(FirebaseProxy.firebaseProxy.timeAgoSinceDate(date!, numericDates: true)) by \(postCreatorName)"
+        let date = FirebaseProxy.firebaseProxy.convertStringDatetoNSDate(postTime)
+        
+        cell.postedTime.text = "posted \(FirebaseProxy.firebaseProxy.timeAgoSinceDate(date, numericDates: true)) by \(postCreatorName)"
         
         
         
         //add profile pic of creator
-        let creatorProfPic = getProfPic(self.favorsList[indexPath.row].creator)
+        let creatorProfPic = FirebaseProxy.firebaseProxy.getProfPic(self.favorsList[indexPath.row].creator)
         if (creatorProfPic != nil) {
             cell.favorPhoto.image = creatorProfPic
         }
@@ -139,15 +135,19 @@ class FavorFeedViewController: UIViewController, UITableViewDataSource, UITableV
         
     }
     
-    func getProfPic(fid: String) -> UIImage? {
-        if (fid != "") {
-            let imgURLString = "https://graph.facebook.com/" + fid + "/picture?type=large" //type=normal
-            let imgURL = NSURL(string: imgURLString)
-            let imageData = NSData(contentsOfURL: imgURL!)
-            let image = UIImage(data: imageData!)
-            return image
+    
+    
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject!) {
+        if segue.identifier == "showFavorDetail"{
+            if let cell = sender as? UITableViewCell {
+                let i = tableView.indexPathForCell(cell)!.row
+                let vc = segue.destinationViewController as! FavorDetailViewController
+                vc.currentFavor = self.favorsList[i]
+                vc.favorsList = self.favorsList
+                vc.usersList = self.usersList
+            }
         }
-        return nil
     }
     
     

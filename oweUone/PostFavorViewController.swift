@@ -21,37 +21,39 @@ class PostFavorViewController: UIViewController {
     
     @IBOutlet weak var warningText: UILabel!
     
+    @IBAction func inputToken(sender: AnyObject) {
+        
+        
+    }
+    
     @IBAction func postFavor(sender: AnyObject) {
         
         let title = favorTitle.text
         let descr = favorDescription.text
         let token = tokenAmount.text
         
-        
         if (title!.isEmpty || descr!.isEmpty || token!.isEmpty) {
             
-           // validationAlert("Please fill out all the information!")
             warningText.text = "Please fill out all the information!"
         
-        } else if !title!.isEmpty && !descr!.isEmpty && !checkToken(uid, postingTokens: Int(token!)!) {
-            
-            //validationAlert("Sorry, you don't have enough money.")
-            warningText.text = "Sorry, you don't have enough money."
- 
             
         } else {
+            
             
             if let user = FIRAuth.auth()?.currentUser {
                 for profile in user.providerData {
                     uid = profile.uid;  // Provider-specific UID
+                    if checkToken(uid, postingTokens: Int(token!)!) {
+                        warningText.text = "Youd don't have enough money"
+                    } else {
                     
-                    FirebaseProxy.firebaseProxy.saveFavor(title!, descr: descr!, tokenAmount: Int(token!)!, creator: uid)
-                                        
+                        FirebaseProxy.firebaseProxy.saveFavor(title!, descr: descr!, tokenAmount: Int(token!)!, creator: uid)
+                        performSegueWithIdentifier("backToFeed", sender: self)
+                    }
+                    
                 }
                 
             }
-            performSegueWithIdentifier("backToFeed", sender: self)
-
         }
         
     }
@@ -77,26 +79,5 @@ class PostFavorViewController: UIViewController {
         
     }
     
-   
-    
-    /*
-    func validationAlert (message: String) {
-        let validationAlert = UIAlertController(title:"Error", message: message, preferredStyle: .Alert)
-        let okAction = UIAlertAction(title: "OK", style: .Default, handler: nil)
-        
-        validationAlert.addAction(okAction)
-        
-        let TopVC = UIApplication.sharedApplication().keyWindow?.rootViewController
-        //dispatch_async(dispatch_get_main_queue(), {
-            TopVC!.presentViewController(validationAlert, animated: true, completion: nil)
-            
-       // })
-        
-        //return
-        
-        
-        
-    }
- */
     
 }

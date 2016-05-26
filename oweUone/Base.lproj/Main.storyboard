@@ -769,6 +769,9 @@
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Token Amount" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="br2-15-Wah">
                                 <rect key="frame" x="20" y="142" width="560" height="30"/>
+                                <accessibility key="accessibilityConfiguration">
+                                    <accessibilityTraits key="traits" keyboardKey="YES"/>
+                                </accessibility>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
                             </textField>
@@ -785,10 +788,10 @@
                                     <action selector="postFavor:" destination="GeL-ef-LAE" eventType="touchUpInside" id="N6M-x7-NpW"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="57e-fG-AO8">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="57e-fG-AO8">
                                 <rect key="frame" x="20" y="277" width="560" height="0.0"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <fontDescription key="fontDescription" style="UICTFontTextStyleFootnote"/>
+                                <color key="textColor" red="0.99215686270000003" green="0.33333333329999998" blue="0.24313725489999999" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
@@ -824,9 +827,9 @@
                     <connections>
                         <outlet property="favorDescription" destination="UUA-en-srx" id="ZlD-U9-RCm"/>
                         <outlet property="favorTitle" destination="jRe-LN-pid" id="dCI-bX-XMB"/>
-                        <outlet property="tokenAmount" destination="br2-15-Wah" id="cNL-8W-NhK"/>
+                        <outlet property="tokenAmount" destination="br2-15-Wah" id="6Zf-Fm-tx0"/>
                         <outlet property="warningText" destination="57e-fG-AO8" id="8Q0-CG-V8i"/>
-                        <segue destination="Xmz-U4-dAX" kind="show" identifier="bacToFeed" id="yvl-nN-Dsm"/>
+                        <segue destination="Xmz-U4-dAX" kind="show" identifier="backToFeed" id="yvl-nN-Dsm"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fih-7e-SQM" userLabel="First Responder" sceneMemberID="firstResponder"/>

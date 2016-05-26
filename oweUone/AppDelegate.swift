@@ -19,6 +19,7 @@ import FirebaseDatabase
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
+    var storyboard: UIStoryboard?
 
 
     override init() {
@@ -30,6 +31,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         // Override point for customization after application launch.
+        
+      self.storyboard = UIStoryboard(name: "Main", bundle: NSBundle.mainBundle())
+        if  NSUserDefaults.standardUserDefaults().valueForKey("uid") != nil {
+            self.window?.rootViewController = self.storyboard?.instantiateViewControllerWithIdentifier("tabBar")
+        } else {
+            self.window?.rootViewController = self.storyboard?.instantiateViewControllerWithIdentifier("Login")
+        }
+       
+        
         return FBSDKApplicationDelegate.sharedInstance()
             .application(application, didFinishLaunchingWithOptions: launchOptions)
     }

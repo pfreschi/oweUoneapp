@@ -35,6 +35,8 @@ class MyFavorViewController: UIViewController, UITableViewDataSource, UITableVie
         setupUI()
         
         if let user = FIRAuth.auth()?.currentUser {
+            incompleteFavors = []
+            completedFavors = []
             for profile in user.providerData {
                 firebase.favorRef.observeEventType(FIRDataEventType.Value, withBlock: { (snapshot) in
                     let favorList = snapshot.value as! [String : AnyObject]

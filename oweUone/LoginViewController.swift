@@ -20,11 +20,13 @@ class LoginViewController: UIViewController {
     
     var userPhoneNum : String = ""
     let rootRef = FIRDatabase.database().reference()
+    let userRef = FirebaseProxy.firebaseProxy.userRef
     var imageView : UIImageView!
-    var newUser : [String: String] = [ "provider" : "",
+    var newUser : [String: AnyObject] = [ "provider" : "",
                                         "Name": "",
                                         "Email": "",
-                                        "Phone": ""
+                                        "Phone": "",
+                                        "Tokens": 0
                                     ]
     
     
@@ -136,26 +138,31 @@ class LoginViewController: UIViewController {
                     return
                 } else {
                     
-                    
                     // add the new user to Firebase database
                     for profile in user!.providerData {
-                            let userUid = profile.uid
+                        let userUid = profile.uid
+                    
+                        self.newUser["provider"] = profile.providerID
+                        self.newUser["Name"] = profile.displayName!
+                        self.newUser["Email"] = profile.email!
+                        self.newUser["Tokens"] = 100
+                       // "School": "University of Washington"
                         
-                            self.newUser["provider"] = profile.providerID
-                            self.newUser["Name"] = profile.displayName!
-                            self.newUser["Email"] = profile.email!
-                           // "School": "University of Washington"
+                        NSUserDefaults.standardUserDefaults().setValue(userUid, forKey: "uid")
                         
-                             
-                            // prompts a alert controller to ask for user phone number
-                            self.getPhoneNumAlert(userUid)
-                        
+                        self.userRef.observeSingleEventOfType(.Value, withBlock: { (snapshot) in
+                            
+                            // if user had logged in before, go to the feed view
+                            if snapshot.hasChild(userUid) {
+                                self.showFeed()
+                                
+                            } else {
+                                // prompts a alert controller to ask for user phone number
+                                // and add user information into firebase
+                                self.getPhoneNumAlert(userUid)
+                            }
+                        })
 
-
-                        
-                        
-                        
-                        
                         
                         //add school to database? implement later
                         /*

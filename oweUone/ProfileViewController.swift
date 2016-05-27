@@ -28,11 +28,18 @@ class ProfileViewController: UIViewController {
    
     @IBAction func signOut(sender: AnyObject) {
         NSUserDefaults.standardUserDefaults().setValue(nil, forKey: "FBid")
+         NSUserDefaults.standardUserDefaults().setValue(nil, forKey: "uid")
         
-        // signout from facebook
-        let manager = FBSDKLoginManager()
-        manager.logOut()
-
+        let FBManager = FBSDKLoginManager()
+        FBManager.logOut()
+        
+        let firebaseAuth = FIRAuth.auth()
+        do {
+            try firebaseAuth?.signOut()
+        } catch let signOutError as NSError {
+            print ("Error signing out: %@", signOutError)
+        }
+    
         // segue back to login view
         let nextView = (self.storyboard?.instantiateViewControllerWithIdentifier("Login"))! as UIViewController
         self.presentViewController(nextView, animated: true, completion: nil)

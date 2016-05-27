@@ -66,6 +66,7 @@ class PostFavorViewController: UIViewController {
       //  print(FIRAuth.auth()?.currentUser?.uid)
     }
     
+
     var hasEnoughToken = false
     
     // returns true if this user has enough tokens to post a favor with the given # of postingTokens

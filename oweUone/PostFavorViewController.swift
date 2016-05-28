@@ -27,7 +27,6 @@ class PostFavorViewController: UIViewController {
     }
     
     @IBAction func postFavor(sender: AnyObject) {
-        
         let title = favorTitle.text
         let descr = favorDescription.text
         let requestedTokens = tokenAmount.text
@@ -79,7 +78,6 @@ class PostFavorViewController: UIViewController {
         print("enough tokens outside closure: \(self.hasEnoughToken)")
         return hasEnoughToken
     }
-    
     func updateHasEnoughTokens(requestedTokens : Int, totalTokens : Int) {
         hasEnoughToken = requestedTokens <= totalTokens
     }

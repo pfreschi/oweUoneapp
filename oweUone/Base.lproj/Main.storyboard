@@ -717,19 +717,6 @@
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ch2-yX-i80">
-                                <rect key="frame" x="242" y="206" width="117" height="30"/>
-                                <state key="normal" title="Post to oweUone"/>
-                                <connections>
-                                    <action selector="postFavor:" destination="GeL-ef-LAE" eventType="touchUpInside" id="N6M-x7-NpW"/>
-                                </connections>
-                            </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="57e-fG-AO8">
-                                <rect key="frame" x="20" y="277" width="560" height="0.0"/>
-                                <fontDescription key="fontDescription" style="UICTFontTextStyleFootnote"/>
-                                <color key="textColor" red="0.99215686270000003" green="0.33333333329999998" blue="0.24313725489999999" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -843,7 +830,4 @@
         <image name="user-25" width="25" height="25"/>
         <image name="user_filled-25" width="25" height="25"/>
     </resources>
-    <inferredMetricsTieBreakers>
-        <segue reference="yvl-nN-Dsm"/>
-    </inferredMetricsTieBreakers>
 </document>

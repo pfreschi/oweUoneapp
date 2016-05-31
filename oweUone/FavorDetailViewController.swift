@@ -56,6 +56,8 @@ class FavorDetailViewController: UIViewController, MFMessageComposeViewControlle
         super.viewDidLoad()
         
         favorPhoto.image = FirebaseProxy.firebaseProxy.getProfPic(currentFavor.creator)
+        favorPhoto.layer.cornerRadius = favorPhoto.frame.size.width / 2;
+        favorPhoto.clipsToBounds = true;
         favorTitle.text = currentFavor.title
         
         for user in usersList {

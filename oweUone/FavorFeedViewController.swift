@@ -53,8 +53,10 @@ class FavorFeedViewController: UIViewController, UITableViewDataSource, UITableV
             
             if let snapshots = snapshot.children.allObjects as? [FIRDataSnapshot] {
                 for snap in snapshots {
-                    if let userDict = snap.value as? Dictionary<String, AnyObject> {
+                    if var userDict = snap.value as? Dictionary<String, AnyObject> {
                         let uid = snap.key
+                        userDict["pic"] = FirebaseProxy.firebaseProxy.getProfPic(uid)
+                        
                         let user = User(key: uid, dictionary: userDict)
                         
                         self.usersList.insert(user, atIndex: 0)
@@ -108,7 +110,9 @@ class FavorFeedViewController: UIViewController, UITableViewDataSource, UITableV
         
         for user in usersList {
             if (user.key == postCreatorID) {
+                //add profile pic of creator
                 postCreatorName = user.name
+                cell.favorPhoto.image = user.pic
             }
         }
         
@@ -120,14 +124,11 @@ class FavorFeedViewController: UIViewController, UITableViewDataSource, UITableV
         
         
         
-        //add profile pic of creator
-        let creatorProfPic = FirebaseProxy.firebaseProxy.getProfPic(self.favorsList[indexPath.row].creator)
-        if (creatorProfPic != nil) {
-            cell.favorPhoto.image = creatorProfPic
-        }
+
         
         
-        2
+ 
+        
         cell.favorPhoto.layer.cornerRadius = cell.favorPhoto.frame.size.width / 2;
         cell.favorPhoto.clipsToBounds = true;
         
@@ -149,6 +150,7 @@ class FavorFeedViewController: UIViewController, UITableViewDataSource, UITableV
             }
         }
     }
+    
     
     
     

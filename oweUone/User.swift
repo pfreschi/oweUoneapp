@@ -18,6 +18,7 @@ class User: NSObject {
     private var _phone: String!
     private var _school: String!
     private var _provider: String!
+    private var _pic: UIImage!
     
     var key: String {
         return _key
@@ -43,6 +44,10 @@ class User: NSObject {
         return _provider
     }
     
+    var pic: UIImage {
+        return _pic
+    }
+    
     init(key: String, dictionary: Dictionary<String, AnyObject>) {
         self._key = key
         if let newEmail = dictionary["Email"] as? String {
@@ -63,6 +68,9 @@ class User: NSObject {
         
         if let newProvider = dictionary["provider"] as? String {
             self._provider = newProvider
+        }
+        if let newPic = dictionary["pic"] as? UIImage {
+            self._pic = newPic
         }
         
         //the above properties added to their key?!

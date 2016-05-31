@@ -28,17 +28,25 @@ class MyFavorViewController: UIViewController, UITableViewDataSource, UITableVie
     var completedFavors = [Favor]()
     var incompleteView = true
     
+    var usersList = [User]()
+    
     @IBOutlet weak var incompleteFavorsView: UITableView!
+    @IBOutlet weak var titleMyFavors: UINavigationItem!
 
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
-        
+
         if let user = FIRAuth.auth()?.currentUser {
+            incompleteFavors.removeAll()
+            completedFavors.removeAll()
+            
             incompleteFavors = []
             completedFavors = []
             for profile in user.providerData {
                 firebase.favorRef.observeEventType(FIRDataEventType.Value, withBlock: { (snapshot) in
+                    self.incompleteFavors.removeAll()
+                    self.completedFavors.removeAll()
                     let favorList = snapshot.value as! [String : AnyObject]
                     for (key, value) in favorList {
                         let favor = Favor(key: key, dictionary: value as! Dictionary<String, AnyObject>)
@@ -52,18 +60,45 @@ class MyFavorViewController: UIViewController, UITableViewDataSource, UITableVie
                             self.completedFavors.append(favor)
                         }
                     }
+                    self.incompleteFavors.sortInPlace { (f1: Favor, f2: Favor) -> Bool in
+                        return f1.time > f2.time
+                    }
+                    self.completedFavors.sortInPlace { (f1: Favor, f2: Favor) -> Bool in
+                        return f1.time > f2.time
+                    }
                     self.incompleteFavorsView.reloadData()
                 })
             }
         }
+        //info about all users is required to proceed to Favor Detail page
+        FirebaseProxy.firebaseProxy.myRootRef.child("users").observeEventType(.Value, withBlock: { (snapshot) in
+            print(snapshot.value)
+            
+            self.usersList = []
+            
+            if let snapshots = snapshot.children.allObjects as? [FIRDataSnapshot] {
+                for snap in snapshots {
+                    if var userDict = snap.value as? Dictionary<String, AnyObject> {
+                        let uid = snap.key
+                        userDict["pic"] = FirebaseProxy.firebaseProxy.getProfPic(uid)
+                        let user = User(key: uid, dictionary: userDict)
+                        
+                        self.usersList.insert(user, atIndex: 0)
+                    }
+                }
+            }
+        })
+
     }
     
     @IBAction func switchFavorView(sender: UIButton) {
         incompleteView = !incompleteView
         if(incompleteView) {
-            sender.setTitle("Show completed items", forState: .Normal)
+            sender.setTitle("Show Completed", forState: .Normal)
+            titleMyFavors.title = "My Incomplete Favors"
         } else {
-            sender.setTitle("Show incomplete items", forState: .Normal)
+            sender.setTitle("Show Incomplete", forState: .Normal)
+            titleMyFavors.title = "My Completed Favors"
         }
         self.incompleteFavorsView.reloadData()
     }
@@ -91,15 +126,8 @@ class MyFavorViewController: UIViewController, UITableViewDataSource, UITableVie
             cell.tokenAmt.text = "\(currentFavor.tokenAmount) tokens"
             let dateFormatter = NSDateFormatter()
             dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss zzz"
-            let date = dateFormatter.dateFromString(currentFavor.time)
-            let difference = NSDate().daysFrom(date!)
-            if(difference < 1) {
-                cell.date.text = "posted \(NSDate().hoursFrom(date!)) hours ago"
-            } else if(difference > 1){
-                cell.date.text = "posted \(difference) days ago"
-            } else {
-                cell.date.text = "posted 1 day ago"
-            }
+            let date = FirebaseProxy.firebaseProxy.convertStringDatetoNSDate(currentFavor.time)
+            cell.date.text = "posted \(FirebaseProxy.firebaseProxy.timeAgoSinceDate(date, numericDates: true))"
             return cell
         } else {
             let cell = tableView.dequeueReusableCellWithIdentifier("CompleteTableViewCell") as! CompleteTableViewCell
@@ -119,5 +147,25 @@ class MyFavorViewController: UIViewController, UITableViewDataSource, UITableVie
             return cell
         }
     }
-}
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject!) {
+        if segue.identifier == "showIncompleteFavorDetail"{
+            if let cell = sender as? UITableViewCell {
+                let i = incompleteFavorsView.indexPathForCell(cell)!.row
+                let vc = segue.destinationViewController as! FavorDetailViewController
+                vc.currentFavor = self.incompleteFavors[i]
+                vc.favorsList = self.incompleteFavors
+                vc.usersList = self.usersList
+            }
+        } else if segue.identifier == "showCompletedFavorDetail"{
+            if let cell = sender as? UITableViewCell {
+                let i = incompleteFavorsView.indexPathForCell(cell)!.row
+                let vc = segue.destinationViewController as! FavorDetailViewController
+                vc.currentFavor = self.completedFavors[i]
+                vc.favorsList = self.completedFavors
+                vc.usersList = self.usersList
+            }
+        }
 
+    }
+}

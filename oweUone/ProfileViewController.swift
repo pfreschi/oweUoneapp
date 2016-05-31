@@ -65,6 +65,8 @@ class ProfileViewController: UIViewController {
                     let tokenAmt = snapshot.value!["Tokens"] as! Int
                     self.phoneNum.text = phone
                     self.oweUtokens.text = "\(tokenAmt) oweUtokens"
+                    self.favorCompleted.text = "Completed \(snapshot.value!["completedFavorsForOthers"]!!.count) favors for others"
+                    //self.favorRecieved.text = "Received \(snapshot.value!["receivedFavorsFromOthers"]!!.count) favors from others"
                 })
             }
         }

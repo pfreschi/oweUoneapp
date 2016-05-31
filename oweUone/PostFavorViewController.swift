@@ -41,7 +41,8 @@ class PostFavorViewController: UIViewController {
                         let totalTokens = snapshot.value!["Tokens"] as! Int
                         if(Int(requestedTokens!) <= totalTokens) {
                             FirebaseProxy.firebaseProxy.saveFavor(title!, descr: descr!, tokenAmount: Int(requestedTokens!)!, creator: self.uid)
-                            self.performSegueWithIdentifier("backToFeed", sender: self)
+                            self.navigationController!.viewControllers.popLast()
+                            //self.performSegueWithIdentifier("backToFeed", sender: self)
                         } else {
                             self.warningText.text = "You don't have enough tokens"
                         }

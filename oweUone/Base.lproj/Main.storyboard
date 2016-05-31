@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10116" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="5sB-sO-yZY">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10116" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="IPZ-rq-lp1">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
@@ -424,6 +424,37 @@
             </objects>
             <point key="canvasLocation" x="2386" y="129"/>
         </scene>
+        <!--Initial View Controller-->
+        <scene sceneID="IQd-dN-2Bh">
+            <objects>
+                <viewController id="IPZ-rq-lp1" customClass="InitialViewController" customModule="oweUone" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="cuD-8K-Rad"/>
+                        <viewControllerLayoutGuide type="bottom" id="LoN-jX-TIm"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="e9s-fT-Ner">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="angel_filled-25" translatesAutoresizingMaskIntoConstraints="NO" id="jj0-Se-1ds">
+                                <rect key="frame" x="287.5" y="287.5" width="25" height="25"/>
+                            </imageView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="jj0-Se-1ds" firstAttribute="centerX" secondItem="e9s-fT-Ner" secondAttribute="centerX" id="3I0-he-9Ho"/>
+                            <constraint firstItem="jj0-Se-1ds" firstAttribute="centerY" secondItem="e9s-fT-Ner" secondAttribute="centerY" id="E5r-XN-e71"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <segue destination="5sB-sO-yZY" kind="show" identifier="showLogin" id="w6T-Wb-Zj1"/>
+                        <segue destination="Xmz-U4-dAX" kind="show" identifier="showFeed" id="soY-vS-f8a"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Dtb-g3-RlY" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1390" y="-62"/>
+        </scene>
         <!--Login-->
         <scene sceneID="ExE-iz-kkQ">
             <objects>
@@ -459,7 +490,7 @@
                     </view>
                     <connections>
                         <outlet property="imageView" destination="9eq-b2-VWc" id="33R-VO-wOj"/>
-                        <segue destination="Xmz-U4-dAX" kind="show" identifier="showFeed" id="B2l-Nr-IuT"/>
+                        <segue destination="Xmz-U4-dAX" kind="show" identifier="showTabbar" id="cMW-BY-PbJ"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xmN-8D-7xx" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -899,6 +930,6 @@
         <image name="user_filled-25" width="25" height="25"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="yvl-nN-Dsm"/>
+        <segue reference="cMW-BY-PbJ"/>
     </inferredMetricsTieBreakers>
 </document>

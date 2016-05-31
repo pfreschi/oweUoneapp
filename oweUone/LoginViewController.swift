@@ -69,6 +69,7 @@ class LoginViewController: UIViewController {
         let nextView = (self.storyboard?.instantiateViewControllerWithIdentifier("tabBar"))! as UIViewController
         self.presentViewController(nextView, animated: true, completion: nil)
         
+        
     }
     
     func getPhoneNumAlert(userUid: String) {

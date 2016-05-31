@@ -28,7 +28,7 @@ class ProfileViewController: UIViewController {
    
     @IBAction func signOut(sender: AnyObject) {
         NSUserDefaults.standardUserDefaults().setValue(nil, forKey: "FBid")
-         NSUserDefaults.standardUserDefaults().setValue(nil, forKey: "uid")
+        NSUserDefaults.standardUserDefaults().setValue(nil, forKey: "uid")
         
         let FBManager = FBSDKLoginManager()
         FBManager.logOut()
@@ -62,7 +62,9 @@ class ProfileViewController: UIViewController {
                 userRef.observeSingleEventOfType(.Value, withBlock: { (snapshot) in
     
                     let phone = snapshot.value!["Phone"] as! String
+                    let tokenAmt = snapshot.value!["Tokens"] as! Int
                     self.phoneNum.text = phone
+                    self.oweUtokens.text = "\(tokenAmt) oweUtokens"
                 })
             }
         }

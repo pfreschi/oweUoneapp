@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		046889631CF53A31003DEA55 /* CompletedFavorsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 046889621CF53A31003DEA55 /* CompletedFavorsViewController.swift */; };
 		1C15E31D35C70393B10E07CD /* Pods_oweUone.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 182CC03F797A11EB765E1EDE /* Pods_oweUone.framework */; };
 		3FF8B6D824AABC7B4392D583 /* Pods_oweUoneUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1E3D5047D83EC16605B75087 /* Pods_oweUoneUITests.framework */; };
 		6540BDC05A16CF89719A5CCC /* Pods_oweUoneTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5B579AA62541A7E8212F56F0 /* Pods_oweUoneTests.framework */; };
@@ -57,7 +56,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		046889621CF53A31003DEA55 /* CompletedFavorsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CompletedFavorsViewController.swift; sourceTree = "<group>"; };
 		0FA8323AC3522192C22D927E /* Pods-oweUoneTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-oweUoneTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-oweUoneTests/Pods-oweUoneTests.release.xcconfig"; sourceTree = "<group>"; };
 		182CC03F797A11EB765E1EDE /* Pods_oweUone.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_oweUone.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		1E3D5047D83EC16605B75087 /* Pods_oweUoneUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_oweUoneUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -199,7 +197,6 @@
 				AEDD85D71CEBFFA70041440E /* FavorFeedViewController.swift */,
 				F4C6D18C1CEC086B001B5D2B /* MyFavorViewController.swift */,
 				AE6807DF1CE56F60004CFE60 /* Main.storyboard */,
-				046889621CF53A31003DEA55 /* CompletedFavorsViewController.swift */,
 				F4C6D18E1CEC3183001B5D2B /* FirebaseProxy.swift */,
 				F4E2C64C1CF14AC300E43462 /* GoogleService-Info.plist */,
 				AE6807E21CE56F60004CFE60 /* Assets.xcassets */,
@@ -501,7 +498,6 @@
 				DE5729281CF4B7A1003DF48D /* CompleteTableViewCell.swift in Sources */,
 				F4A4FFB41CF3A28400BAAC03 /* User.swift in Sources */,
 				AEDD85D61CEBFF5B0041440E /* LoginViewController.swift in Sources */,
-				046889631CF53A31003DEA55 /* CompletedFavorsViewController.swift in Sources */,
 				F4FCAB5F1CF2D88C0035DF52 /* PhoneNumberViewController.swift in Sources */,
 				AE6807DE1CE56F60004CFE60 /* ViewController.swift in Sources */,
 				AEDD85DA1CEBFFE30041440E /* FavorDetailViewController.swift in Sources */,

@@ -454,25 +454,27 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="9eq-b2-VWc">
-                                <rect key="frame" x="168" y="91" width="240" height="128"/>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="bigIcon" translatesAutoresizingMaskIntoConstraints="NO" id="9eq-b2-VWc">
+                                <rect key="frame" x="167" y="160" width="266" height="226"/>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6LQ-SD-hft">
-                                <rect key="frame" x="230" y="285" width="141" height="30"/>
-                                <state key="normal" title="Login with Facebook"/>
+                                <rect key="frame" x="230" y="416" width="141" height="30"/>
+                                <state key="normal" title="Login with Facebook">
+                                    <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
                                 <connections>
                                     <action selector="FBlogin:" destination="5sB-sO-yZY" eventType="touchUpInside" id="z8Y-DO-4zx"/>
                                 </connections>
                             </button>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
-                            <constraint firstItem="g33-lD-wOj" firstAttribute="top" secondItem="9eq-b2-VWc" secondAttribute="bottom" constant="381" id="ItI-ix-aPv"/>
-                            <constraint firstItem="6LQ-SD-hft" firstAttribute="centerY" secondItem="u0M-Ui-1gS" secondAttribute="centerY" id="NHT-Lw-acE"/>
-                            <constraint firstItem="9eq-b2-VWc" firstAttribute="leading" secondItem="u0M-Ui-1gS" secondAttribute="leadingMargin" constant="148" id="Ske-Zz-34R"/>
-                            <constraint firstItem="9eq-b2-VWc" firstAttribute="top" secondItem="n1E-zt-NYk" secondAttribute="bottom" constant="71" id="cqL-su-bt7"/>
+                            <constraint firstItem="g33-lD-wOj" firstAttribute="top" secondItem="9eq-b2-VWc" secondAttribute="bottom" constant="214" id="ItI-ix-aPv"/>
+                            <constraint firstItem="6LQ-SD-hft" firstAttribute="centerY" secondItem="u0M-Ui-1gS" secondAttribute="centerY" constant="131" id="NHT-Lw-acE"/>
+                            <constraint firstItem="9eq-b2-VWc" firstAttribute="leading" secondItem="u0M-Ui-1gS" secondAttribute="leadingMargin" constant="147" id="Ske-Zz-34R"/>
+                            <constraint firstItem="9eq-b2-VWc" firstAttribute="top" secondItem="n1E-zt-NYk" secondAttribute="bottom" constant="140" id="cqL-su-bt7"/>
                             <constraint firstItem="6LQ-SD-hft" firstAttribute="centerX" secondItem="u0M-Ui-1gS" secondAttribute="centerX" id="gmz-Bk-ufn"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="9eq-b2-VWc" secondAttribute="trailing" constant="172" id="rJ6-np-OMg"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="9eq-b2-VWc" secondAttribute="trailing" constant="147" id="rJ6-np-OMg"/>
                         </constraints>
                     </view>
                     <connections>
@@ -522,14 +524,14 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Completed __ favors for others." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qyv-TZ-kYC">
-                                <rect key="frame" x="20" y="426" width="560" height="15"/>
-                                <fontDescription key="fontDescription" style="UICTFontTextStyleFootnote"/>
+                                <rect key="frame" x="20" y="430" width="560" height="19.5"/>
+                                <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Recieved __ favors from others" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ClX-Ce-z9y">
-                                <rect key="frame" x="20" y="390" width="560" height="15"/>
-                                <fontDescription key="fontDescription" style="UICTFontTextStyleFootnote"/>
+                                <rect key="frame" x="20" y="390" width="560" height="19.5"/>
+                                <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
@@ -584,7 +586,7 @@
                                 <rect key="frame" x="18" y="349" width="25" height="25"/>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fvZ-Rx-EPh">
-                                <rect key="frame" x="20" y="484" width="560" height="59"/>
+                                <rect key="frame" x="20" y="492.5" width="560" height="50.5"/>
                                 <state key="normal" title="Sign Out"/>
                                 <connections>
                                     <action selector="signOut:" destination="jbB-KV-NET" eventType="touchUpInside" id="x58-Th-lHR"/>
@@ -726,7 +728,7 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Post A New Favor" id="2M0-Ah-GAE">
-                        <barButtonItem key="rightBarButtonItem" title="Done" id="mzp-es-LZ9">
+                        <barButtonItem key="rightBarButtonItem" title="Post" id="mzp-es-LZ9">
                             <connections>
                                 <action selector="postFavor:" destination="GeL-ef-LAE" id="UeV-IX-78T"/>
                             </connections>
@@ -806,6 +808,7 @@
     <resources>
         <image name="angel-25" width="25" height="25"/>
         <image name="angel_filled-25" width="25" height="25"/>
+        <image name="bigIcon" width="1024" height="1024"/>
         <image name="cheap_2_filled-25" width="25" height="25"/>
         <image name="helping_hand-25" width="25" height="25"/>
         <image name="helping_hand_filled-25" width="25" height="25"/>
@@ -815,7 +818,7 @@
         <image name="user_filled-25" width="25" height="25"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="yvl-nN-Dsm"/>
+        <segue reference="cMW-BY-PbJ"/>
         <segue reference="Xmy-EZ-ONa"/>
     </inferredMetricsTieBreakers>
 </document>

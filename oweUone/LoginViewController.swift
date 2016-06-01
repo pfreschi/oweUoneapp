@@ -26,23 +26,22 @@ class LoginViewController: UIViewController {
                                         "Name": "",
                                         "Email": "",
                                         "Phone": "",
-                                        "Tokens": 0
+                                        "Tokens": 0,
+                                        "completedFavorsForOthers": []
                                     ]
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        imageView = UIImageView(frame: CGRectMake(0, 0, 100, 100))
-        imageView.center = CGPoint(x: view.center.x, y: 200)
-        imageView.image = UIImage(named: "fb-art")
-        view.addSubview(imageView)
-        
     }
     
     
     @IBAction func FBlogin(sender: AnyObject) {
         let FBlogin = FBSDKLoginManager()
+        FBlogin.logOut()
+       // FBlogin.loginBehavior = FBSDKLoginBehavior(rawValue: )
+       // FBSDKAccessToken.refreshCurrentAccessToken(f)
         
         
         FBlogin.logInWithReadPermissions(["email"], fromViewController: self, handler: {(result, error) -> Void in
@@ -127,6 +126,7 @@ class LoginViewController: UIViewController {
         if (FIRAuth.auth()?.currentUser?.linkWithCredential) != nil {
             print("Current user has been linked with a firebase credential.")
             //when user logged in, automatically take user to the favors feed view
+            
             showFeed()
          
         } else {
@@ -147,6 +147,7 @@ class LoginViewController: UIViewController {
                         self.newUser["Name"] = profile.displayName!
                         self.newUser["Email"] = profile.email!
                         self.newUser["Tokens"] = 100
+                        //self.newUser["completedFavorsForOthers"] = []
                        // "School": "University of Washington"
                         
                         NSUserDefaults.standardUserDefaults().setValue(userUid, forKey: "uid")

@@ -84,9 +84,9 @@ class FavorDetailViewController: UIViewController, MFMessageComposeViewControlle
         
         
         let relativeTimeString = FirebaseProxy.firebaseProxy.convertStringDatetoNSDate(currentFavor.time)
-        postedTime.text = "posted \(FirebaseProxy.firebaseProxy.timeAgoSinceDate(relativeTimeString, numericDates: true)) by \(favorCreatorName)"
+        postedTime.text = "Posted \(FirebaseProxy.firebaseProxy.timeAgoSinceDate(relativeTimeString, numericDates: true)) by \(favorCreatorName)"
         
-        earnTokens.text = "earn \(currentFavor.tokenAmount) tokens"
+        earnTokens.text = "Earn \(currentFavor.tokenAmount) tokens"
         school.text = "University of Washington"
         favorDescription.text = " \"\(currentFavor.descr)\""
 

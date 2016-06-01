@@ -34,9 +34,9 @@ class PostFavorViewController: UIViewController {
         if (title!.isEmpty || descr!.isEmpty || requestedTokens!.isEmpty) {
             warningText.text = "Please fill out all the information!"
             
-        } else if title!.characters.count > 20 {
+        } else if title!.characters.count > 50 {
             
-            warningText.text = "Please limit the favor title to 20 characters"
+            warningText.text = "Please limit the favor title to 50 characters"
             
         } else if descr!.characters.count > 200 {
             warningText.text = "Please limit the descrption to 200 characters"
@@ -48,8 +48,8 @@ class PostFavorViewController: UIViewController {
                         let totalTokens = snapshot.value!["Tokens"] as! Int
                         if(Int(requestedTokens!) <= totalTokens) {
                             FirebaseProxy.firebaseProxy.saveFavor(title!, descr: descr!, tokenAmount: Int(requestedTokens!)!, creator: self.uid)
-                            self.navigationController!.viewControllers.popLast()
-                            //self.performSegueWithIdentifier("backToFeed", sender: self)
+                            //self.navigationController!.viewControllers.popLast()
+                            self.performSegueWithIdentifier("backToFeed", sender: self)
                         } else {
                             self.warningText.text = "You don't have enough tokens"
                         }

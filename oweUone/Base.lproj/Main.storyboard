@@ -46,7 +46,7 @@
                                                 <rect key="frame" x="0.0" y="28" width="600" height="78"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="amo-vE-cGr" id="MKz-Ht-Y49">
-                                                    <rect key="frame" x="0.0" y="0.0" width="600" height="77"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="600" height="77.5"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title Of Favor" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lQ7-t9-TnJ">
@@ -98,7 +98,7 @@
                                                 <rect key="frame" x="0.0" y="106" width="600" height="80"/>
                                                 <autoresizingMask key="autoresizingMask"/>
                                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="h1y-Rk-egU" id="8LU-zV-vEM">
-                                                    <rect key="frame" x="0.0" y="0.0" width="600" height="79"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="600" height="79.5"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title Of Favor" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="snV-bU-yac">
@@ -433,14 +433,27 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="angel_filled-25" translatesAutoresizingMaskIntoConstraints="NO" id="jj0-Se-1ds">
-                                <rect key="frame" x="288" y="288" width="25" height="25"/>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="bigIcon" translatesAutoresizingMaskIntoConstraints="NO" id="jj0-Se-1ds">
+                                <rect key="frame" x="20" y="116" width="560" height="464"/>
                             </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Welcome to oweUone!" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bCC-by-iKv">
+                                <rect key="frame" x="20" y="28" width="560" height="80"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="80" id="8vF-mr-7aq"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
+                                <color key="textColor" red="0.074509803920000006" green="0.2156862745" blue="0.6705882353" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="jj0-Se-1ds" firstAttribute="centerX" secondItem="e9s-fT-Ner" secondAttribute="centerX" id="3I0-he-9Ho"/>
-                            <constraint firstItem="jj0-Se-1ds" firstAttribute="centerY" secondItem="e9s-fT-Ner" secondAttribute="centerY" id="E5r-XN-e71"/>
+                            <constraint firstAttribute="leadingMargin" secondItem="jj0-Se-1ds" secondAttribute="leading" id="0J3-mE-Y7T"/>
+                            <constraint firstItem="bCC-by-iKv" firstAttribute="top" secondItem="cuD-8K-Rad" secondAttribute="bottom" constant="8" id="9wU-pc-RNr"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="jj0-Se-1ds" secondAttribute="trailing" id="ZS3-eV-Ze7"/>
+                            <constraint firstItem="jj0-Se-1ds" firstAttribute="top" secondItem="bCC-by-iKv" secondAttribute="bottom" constant="8" id="feA-Jh-8Dp"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="bCC-by-iKv" secondAttribute="trailing" id="nmP-el-DT6"/>
+                            <constraint firstAttribute="leadingMargin" secondItem="bCC-by-iKv" secondAttribute="leading" id="sre-qv-Cu8"/>
+                            <constraint firstItem="LoN-jX-TIm" firstAttribute="top" secondItem="jj0-Se-1ds" secondAttribute="bottom" constant="20" id="umL-UI-INq"/>
                         </constraints>
                     </view>
                     <connections>
@@ -816,6 +829,7 @@
     <resources>
         <image name="angel-25" width="25" height="25"/>
         <image name="angel_filled-25" width="25" height="25"/>
+        <image name="bigIcon" width="1024" height="1024"/>
         <image name="cheap_2_filled-25" width="25" height="25"/>
         <image name="helping_hand-25" width="25" height="25"/>
         <image name="helping_hand_filled-25" width="25" height="25"/>

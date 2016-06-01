@@ -32,7 +32,26 @@ class FavorDetailViewController: UIViewController, MFMessageComposeViewControlle
     @IBOutlet weak var school: UILabel!
     @IBOutlet weak var favorDescription: UILabel!
     
+    @IBOutlet weak var interestedLabel: UILabel!
+    @IBOutlet weak var deleteButton: UIButton!
     @IBOutlet weak var contactOrMarkAsCompleted: UIButton!
+    @IBAction func deletePressed(sender: AnyObject) {
+        let deleteAlert = UIAlertController(title: "Confirm Deletion", message: "Are you sure you want to permanently delete this favor?", preferredStyle: UIAlertControllerStyle.Alert)
+        
+        deleteAlert.addAction(UIAlertAction(title: "Delete", style: .Destructive, handler: { (action: UIAlertAction!) in
+            //permanently delete from favors list and segue backwards
+            self.currentFavor.favorRef.removeValue()
+            self.navigationController!.viewControllers.popLast()
+        }))
+        
+        deleteAlert.addAction(UIAlertAction(title: "Cancel", style: .Cancel, handler: { (action: UIAlertAction!) in
+            deleteAlert.dismissViewControllerAnimated(true, completion: nil)
+        }))
+        
+        presentViewController(deleteAlert, animated: true, completion: nil)
+        
+        
+    }
     
     @IBAction func contactOrCompletePressed(sender: UIButton) {
         if (currentUserIsCreator){
@@ -77,14 +96,25 @@ class FavorDetailViewController: UIViewController, MFMessageComposeViewControlle
         
         if (currentUserIsCreator){
             contactOrMarkAsCompleted.setTitle("Mark as Completed", forState: .Normal)
+            deleteButton.hidden = false
+            interestedLabel.hidden = true
         } else {
             contactOrMarkAsCompleted.setTitle("Contact \(favorCreatorName)", forState: .Normal)
+            deleteButton.hidden = true
+            interestedLabel.hidden = false
         }
 
         
         
-        let relativeTimeString = FirebaseProxy.firebaseProxy.convertStringDatetoNSDate(currentFavor.time)
-        postedTime.text = "posted \(FirebaseProxy.firebaseProxy.timeAgoSinceDate(relativeTimeString, numericDates: true)) by \(favorCreatorName)"
+        let dateString = FirebaseProxy.firebaseProxy.convertStringDatetoNSDate(currentFavor.time)
+        let localeStr = "us"
+        
+        let dateFormatter = NSDateFormatter()
+        dateFormatter.locale = NSLocale(localeIdentifier: localeStr)
+        dateFormatter.dateFormat = "EEEE, MMM d, h:mm a"
+        let date: String = dateFormatter.stringFromDate(dateString)
+        
+        postedTime.text = "posted \(date) by \(favorCreatorName)"
         
         earnTokens.text = "earn \(currentFavor.tokenAmount) tokens"
         school.text = "University of Washington"

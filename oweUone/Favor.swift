@@ -21,6 +21,10 @@ class Favor: NSObject {
     private var _tokenAmount: Int!
     private var _completion: Bool!
     
+    var favorRef: FIRDatabaseReference {
+        return _favorRef
+    }
+    
     var key: String {
         return _key
     }

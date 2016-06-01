@@ -32,7 +32,14 @@ class PostFavorViewController: UIViewController {
         let requestedTokens = tokenAmount.text
         
         if (title!.isEmpty || descr!.isEmpty || requestedTokens!.isEmpty) {
-            warningText.text = "Please fill out all of the information!"
+            warningText.text = "Please fill out all the information!"
+            
+        } else if title!.characters.count > 50 {
+            
+            warningText.text = "Please limit the favor title to 50 characters"
+            
+        } else if descr!.characters.count > 200 {
+            warningText.text = "Please limit the descrption to 200 characters"
         } else {
             if let user = FIRAuth.auth()?.currentUser {
                 for profile in user.providerData {

@@ -116,7 +116,7 @@ class FavorDetailViewController: UIViewController, MFMessageComposeViewControlle
         
         postedTime.text = "posted \(date) by \(favorCreatorName)"
         
-        earnTokens.text = "Earn \(currentFavor.tokenAmount) tokens"
+        earnTokens.text = "earn \(currentFavor.tokenAmount) tokens"
         school.text = "University of Washington"
         favorDescription.text = " \"\(currentFavor.descr)\""
 

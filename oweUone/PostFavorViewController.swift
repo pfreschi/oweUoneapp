@@ -37,6 +37,9 @@ class PostFavorViewController: UIViewController {
         } else if title!.characters.count > 20 {
             
             warningText.text = "Please limit the favor title to 20 characters"
+            
+        } else if descr!.characters.count > 200 {
+            warningText.text = "Please limit the descrption to 200 characters"
         } else {
             if let user = FIRAuth.auth()?.currentUser {
                 for profile in user.providerData {

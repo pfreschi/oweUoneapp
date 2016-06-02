@@ -71,20 +71,22 @@ class FirebaseProxy: NSObject {
     }
     
     func updateTokensForUser(uid : String, newAmount : Int) {
-        let childUpdates = ["/users/\(uid)/Tokens": newAmount]
-        FirebaseProxy.firebaseProxy.myRootRef.updateChildValues(childUpdates as [NSObject : AnyObject])
+        if(uid != "") {
+            let childUpdates = ["/users/\(uid)/Tokens": newAmount]
+            FirebaseProxy.firebaseProxy.myRootRef.updateChildValues(childUpdates as [NSObject : AnyObject])
+        }
     }
     
     func markFavorAsCompleted(favorID: String, creatorID: String, finisherID: String) {
         //sets favor completion status. adds favor to creator's recievedFavorsFromOthers, finisher's completedFavorsForOthers.
         //LATER make sure to implement token deduction from creator to finisher.
-        
-        let childUpdates = ["/favors/\(favorID)/completed": true,
-                            "/favors/\(favorID)/finisher": finisherID,
-                            "/users/\(creatorID)/recievedFavorsFromOthers/\(favorID)": true,
-                            "/users/\(finisherID)/completedFavorsForOthers/\(favorID)": true]
-        FirebaseProxy.firebaseProxy.myRootRef.updateChildValues(childUpdates as [NSObject : AnyObject])
-
+        if(favorID != "" && creatorID != "" && finisherID != "") {
+            let childUpdates = ["/favors/\(favorID)/completed": true,
+                                "/favors/\(favorID)/finisher": finisherID,
+                                "/users/\(creatorID)/recievedFavorsFromOthers/\(favorID)": true,
+                                "/users/\(finisherID)/completedFavorsForOthers/\(favorID)": true]
+            FirebaseProxy.firebaseProxy.myRootRef.updateChildValues(childUpdates as [NSObject : AnyObject])
+        }
     }
     
     func markFavorAsIncomplete(favorID: String, creatorID: String, finisherID: String) {

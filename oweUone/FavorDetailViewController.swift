@@ -98,6 +98,12 @@ class FavorDetailViewController: UIViewController, MFMessageComposeViewControlle
         if (currentFavor.creator == NSUserDefaults.standardUserDefaults().stringForKey("FBid")){
             currentUserIsCreator = true
         }
+        if(currentFavor.completion) {
+            contactOrMarkAsCompleted.hidden = true
+            favorMarkedCompletedMessage.hidden = false
+            deleteButton.hidden = true
+            interestedLabel.hidden = true
+        }
         if(markCompleted) {
             contactOrMarkAsCompleted.hidden = true
             favorMarkedCompletedMessage.hidden = false

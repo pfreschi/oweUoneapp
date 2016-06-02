@@ -22,21 +22,13 @@
                                 <rect key="frame" x="85" y="63" width="430" height="379"/>
                                 <color key="backgroundColor" red="0.08235294118" green="0.23921568630000001" blue="0.6705882353" alpha="1" colorSpace="calibratedRGB"/>
                             </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Welcome to OweUone" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tMp-1a-d5Z">
-                                <rect key="frame" x="205" y="439" width="190" height="23"/>
-                                <fontDescription key="fontDescription" style="UICTFontTextStyleTitle3"/>
-                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                         </subviews>
                         <color key="backgroundColor" red="0.08235294118" green="0.23921568630000001" blue="0.6705882353" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstItem="Rac-r6-CaC" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="3df-ge-3bf"/>
-                            <constraint firstItem="tMp-1a-d5Z" firstAttribute="top" secondItem="Rac-r6-CaC" secondAttribute="bottom" constant="-3" id="9mz-gX-FS2"/>
                             <constraint firstItem="xb3-aO-Qok" firstAttribute="top" secondItem="Rac-r6-CaC" secondAttribute="bottom" constant="158" id="BMr-yX-kM3"/>
                             <constraint firstItem="Rac-r6-CaC" firstAttribute="top" secondItem="Llm-lL-Icb" secondAttribute="bottom" constant="43" id="OkP-Kw-wIp"/>
                             <constraint firstItem="Rac-r6-CaC" firstAttribute="leading" secondItem="Ze5-6b-2t3" secondAttribute="leadingMargin" constant="65" id="eyl-6N-Nuc"/>
-                            <constraint firstItem="Rac-r6-CaC" firstAttribute="centerX" secondItem="tMp-1a-d5Z" secondAttribute="centerX" id="l1R-S3-RxW"/>
                         </constraints>
                     </view>
                 </viewController>

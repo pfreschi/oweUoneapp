@@ -32,6 +32,12 @@ class LoginViewController: UIViewController {
     
     
     override func viewDidLoad() {
+        imageView = UIImageView(frame: CGRectMake(0, 0, 200, 200))
+        imageView.center = CGPoint(x: view.center.x, y: 250)
+        imageView.image = UIImage(named: "bigIcon")
+        imageView.layer.cornerRadius = imageView.frame.size.width / 2;
+        imageView.clipsToBounds = true;
+        view.addSubview(imageView)
         super.viewDidLoad()
         
     }

@@ -66,7 +66,7 @@ class FavorDetailViewController: UIViewController, MFMessageComposeViewControlle
         } else {
             if (MFMessageComposeViewController.canSendText()) {
                 let controller = MFMessageComposeViewController()
-                controller.body = "(oweUone Inquiry): Hi there! I am interested in completing your \"\(currentFavor.title)\" favor on oweUone. -\(currentUserRealName)"
+                controller.body = "(oweUone Inquiry): Hi there, \(favorCreatorName)! I am interested in completing your \"\(currentFavor.title)\" favor on oweUone. -\(currentUserRealName)"
                 controller.recipients = [favorCreatorPhoneNumber]
                 controller.messageComposeDelegate = self
                 self.presentViewController(controller, animated: true, completion: nil)
@@ -78,7 +78,7 @@ class FavorDetailViewController: UIViewController, MFMessageComposeViewControlle
         super.viewDidLoad()
         
         favorMarkedCompletedMessage.hidden = true
-        
+
         favorPhoto.image = FirebaseProxy.firebaseProxy.getProfPic(currentFavor.creator)
         favorPhoto.layer.cornerRadius = favorPhoto.frame.size.width / 2;
         favorPhoto.clipsToBounds = true;
@@ -102,13 +102,13 @@ class FavorDetailViewController: UIViewController, MFMessageComposeViewControlle
             contactOrMarkAsCompleted.hidden = true
             favorMarkedCompletedMessage.hidden = false
             deleteButton.hidden = true
-            interestedLabel.hidden = true
+            interestedLabel.text = ""
         }
         if(markCompleted) {
             contactOrMarkAsCompleted.hidden = true
             favorMarkedCompletedMessage.hidden = false
             deleteButton.hidden = true
-            interestedLabel.hidden = true
+            interestedLabel.text = ""
             FirebaseProxy.firebaseProxy.markFavorAsCompleted(currentFavor.key, creatorID: currentFavor.creator, finisherID: favorFinisherKey)
             // find creator user and subtract tokens from them
             let creatorRef = FirebaseProxy.firebaseProxy.userRef.child(currentFavor.creator)
@@ -126,11 +126,12 @@ class FavorDetailViewController: UIViewController, MFMessageComposeViewControlle
             if (currentUserIsCreator){
                 contactOrMarkAsCompleted.setTitle("Mark as Completed", forState: .Normal)
                 deleteButton.hidden = false
-                interestedLabel.hidden = true
+                interestedLabel.text = ""
             } else {
                 contactOrMarkAsCompleted.setTitle("Contact \(favorCreatorName)", forState: .Normal)
                 deleteButton.hidden = true
                 interestedLabel.hidden = false
+                favorMarkedCompletedMessage.text = "This favor is completed!"
             }
         }
         
@@ -146,7 +147,7 @@ class FavorDetailViewController: UIViewController, MFMessageComposeViewControlle
         
         earnTokens.text = "earn \(currentFavor.tokenAmount) tokens"
         school.text = "University of Washington"
-        favorDescription.text = " \"\(currentFavor.descr)\""
+        favorDescription.text = "\"\(currentFavor.descr)\""
 
         // Do any additional setup after loading the view, typically from a nib.
     }

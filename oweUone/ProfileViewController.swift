@@ -59,18 +59,25 @@ class ProfileViewController: UIViewController {
                 // get user phone number
                 let uid = profile.uid
                 let userRef = FirebaseProxy.firebaseProxy.userRef.child(uid)
-                userRef.observeSingleEventOfType(.Value, withBlock: { (snapshot) in
+                userRef.observeEventType(.Value, withBlock: { (snapshot) in
     
                     let phone = snapshot.value!["Phone"] as! String
                     let tokenAmt = snapshot.value!["Tokens"] as! Int
                     let completedFavors = snapshot.value!["completedFavorsForOthers"]!!
+                    let receivedFavors = snapshot.value!["recievedFavorsFromOthers"]!!
                     self.phoneNum.text = phone
                     self.oweUtokens.text = "\(tokenAmt) oweUtokens"
                     if completedFavors.count != nil {
                         self.favorCompleted.text = "Completed \(completedFavors.count) favors for others"
                         
                     } else {
-                        self.favorCompleted.text = "Completed 0 favor for others"
+                        self.favorCompleted.text = "Completed 0 favors for others"
+                    }
+                    if receivedFavors.count != nil {
+                        self.favorRecieved.text = "Received \(receivedFavors.count) favors from others"
+                        
+                    } else {
+                        self.favorRecieved.text = "Completed 0 favors for others"
                     }
                     //self.favorRecieved.text = "Received \(snapshot.value!["receivedFavorsFromOthers"]!!.count) favors from others"
                 })

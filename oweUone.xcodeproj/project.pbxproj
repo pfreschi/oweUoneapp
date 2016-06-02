@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		04759E5F1CFFFD6F001FDF98 /* UserSelectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04759E5E1CFFFD6F001FDF98 /* UserSelectionViewController.swift */; };
+		04759E611CFFFF6D001FDF98 /* UserTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04759E601CFFFF6D001FDF98 /* UserTableViewCell.swift */; };
 		1C15E31D35C70393B10E07CD /* Pods_oweUone.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 182CC03F797A11EB765E1EDE /* Pods_oweUone.framework */; };
 		3FF8B6D824AABC7B4392D583 /* Pods_oweUoneUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1E3D5047D83EC16605B75087 /* Pods_oweUoneUITests.framework */; };
 		6540BDC05A16CF89719A5CCC /* Pods_oweUoneTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5B579AA62541A7E8212F56F0 /* Pods_oweUoneTests.framework */; };
@@ -57,6 +59,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		04759E5E1CFFFD6F001FDF98 /* UserSelectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserSelectionViewController.swift; sourceTree = "<group>"; };
+		04759E601CFFFF6D001FDF98 /* UserTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserTableViewCell.swift; sourceTree = "<group>"; };
 		0FA8323AC3522192C22D927E /* Pods-oweUoneTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-oweUoneTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-oweUoneTests/Pods-oweUoneTests.release.xcconfig"; sourceTree = "<group>"; };
 		182CC03F797A11EB765E1EDE /* Pods_oweUone.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_oweUone.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		1E3D5047D83EC16605B75087 /* Pods_oweUoneUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_oweUoneUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -195,6 +199,8 @@
 				F4FCAB5E1CF2D88C0035DF52 /* PhoneNumberViewController.swift */,
 				AEDD85D51CEBFF5B0041440E /* LoginViewController.swift */,
 				AEDD85D91CEBFFE30041440E /* FavorDetailViewController.swift */,
+				04759E5E1CFFFD6F001FDF98 /* UserSelectionViewController.swift */,
+				04759E601CFFFF6D001FDF98 /* UserTableViewCell.swift */,
 				AEDD85DB1CEC00030041440E /* ProfileViewController.swift */,
 				AEDD85DD1CEC00220041440E /* PostFavorViewController.swift */,
 				AEDD85D71CEBFFA70041440E /* FavorFeedViewController.swift */,
@@ -505,8 +511,10 @@
 				AE6807DE1CE56F60004CFE60 /* ViewController.swift in Sources */,
 				AEDD85DA1CEBFFE30041440E /* FavorDetailViewController.swift in Sources */,
 				AEDD85DE1CEC00220041440E /* PostFavorViewController.swift in Sources */,
+				04759E5F1CFFFD6F001FDF98 /* UserSelectionViewController.swift in Sources */,
 				AE6807DC1CE56F60004CFE60 /* AppDelegate.swift in Sources */,
 				DE5729261CF4B475003DF48D /* IncompleteTableViewCell.swift in Sources */,
+				04759E611CFFFF6D001FDF98 /* UserTableViewCell.swift in Sources */,
 				AEDD85DC1CEC00030041440E /* ProfileViewController.swift in Sources */,
 				F4C6D18D1CEC086B001B5D2B /* MyFavorViewController.swift in Sources */,
 				AE733E4D1CEBF8EB00061A9B /* Favor.swift in Sources */,

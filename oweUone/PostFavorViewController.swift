@@ -50,7 +50,7 @@ class PostFavorViewController: UIViewController {
                             FirebaseProxy.firebaseProxy.saveFavor(title!, descr: descr!, tokenAmount: Int(requestedTokens!)!, creator: self.uid)
                             self.navigationController!.viewControllers.popLast()
                         } else {
-                            self.warningText.text = "You don't have enough tokens to post this favor. Try changing the token amount."
+                            self.warningText.text = "You wanted to post a favor with \(requestedTokens) but you only have \(totalTokens). Try lowering the token amount."
                         }
                     })
                     //let test = userHasEnoughTokens(uid, requestedTokens: Int(token!)!)
@@ -72,7 +72,6 @@ class PostFavorViewController: UIViewController {
       //  print(FIRAuth.auth()?.currentUser?.uid)
     }
     
-
     var hasEnoughToken = false
     
     // returns true if this user has enough tokens to post a favor with the given # of postingTokens

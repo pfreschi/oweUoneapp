@@ -49,7 +49,6 @@ class LoginViewController: UIViewController {
        // FBlogin.loginBehavior = FBSDKLoginBehavior(rawValue: )
        // FBSDKAccessToken.refreshCurrentAccessToken(f)
         
-        
         FBlogin.logInWithReadPermissions(["email"], fromViewController: self, handler: {(result, error) -> Void in
             if let error = error {
                 print(error.localizedDescription)
@@ -73,8 +72,6 @@ class LoginViewController: UIViewController {
         //when user logged in, automatically take user to the favors feed view
         let nextView = (self.storyboard?.instantiateViewControllerWithIdentifier("tabBar"))! as UIViewController
         self.presentViewController(nextView, animated: true, completion: nil)
-        
-        
     }
     
     func getPhoneNumAlert(userUid: String) {
@@ -89,8 +86,6 @@ class LoginViewController: UIViewController {
             self.addNewUser(userUid)
             self.showFeed()
             self.setNeedsFocusUpdate()
-            
-
         })
         
         alertController.addAction(updateAction)

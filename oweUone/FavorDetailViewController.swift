@@ -24,6 +24,7 @@ class FavorDetailViewController: UIViewController, MFMessageComposeViewControlle
     
     var currentUserIsCreator = Bool()
     
+    var markCompleted = false
     
     @IBOutlet weak var favorPhoto: UIImageView!
     @IBOutlet weak var favorTitle: UILabel!
@@ -35,6 +36,10 @@ class FavorDetailViewController: UIViewController, MFMessageComposeViewControlle
     @IBOutlet weak var interestedLabel: UILabel!
     @IBOutlet weak var deleteButton: UIButton!
     @IBOutlet weak var contactOrMarkAsCompleted: UIButton!
+    
+    @IBOutlet weak var favorMarkedCompletedMessage: UILabel!
+    var favorFinisherKey = ""
+
     @IBAction func deletePressed(sender: AnyObject) {
         let deleteAlert = UIAlertController(title: "Confirm Deletion", message: "Are you sure you want to permanently delete this favor?", preferredStyle: UIAlertControllerStyle.Alert)
         
@@ -55,7 +60,9 @@ class FavorDetailViewController: UIViewController, MFMessageComposeViewControlle
     
     @IBAction func contactOrCompletePressed(sender: UIButton) {
         if (currentUserIsCreator){
-            
+            let nextView = self.storyboard!.instantiateViewControllerWithIdentifier("UserSelectionViewController") as! UserSelectionViewController
+            nextView.currentFavor = currentFavor
+            self.showViewController(nextView, sender: self)
         } else {
             if (MFMessageComposeViewController.canSendText()) {
                 let controller = MFMessageComposeViewController()
@@ -65,14 +72,12 @@ class FavorDetailViewController: UIViewController, MFMessageComposeViewControlle
                 self.presentViewController(controller, animated: true, completion: nil)
             }
         }
-        
     }
-    
 
-    
-    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        favorMarkedCompletedMessage.hidden = true
         
         favorPhoto.image = FirebaseProxy.firebaseProxy.getProfPic(currentFavor.creator)
         favorPhoto.layer.cornerRadius = favorPhoto.frame.size.width / 2;
@@ -93,18 +98,35 @@ class FavorDetailViewController: UIViewController, MFMessageComposeViewControlle
         if (currentFavor.creator == NSUserDefaults.standardUserDefaults().stringForKey("FBid")){
             currentUserIsCreator = true
         }
-        
-        if (currentUserIsCreator){
-            contactOrMarkAsCompleted.setTitle("Mark as Completed", forState: .Normal)
-            deleteButton.hidden = false
-            interestedLabel.hidden = true
-        } else {
-            contactOrMarkAsCompleted.setTitle("Contact \(favorCreatorName)", forState: .Normal)
+        if(markCompleted) {
+            contactOrMarkAsCompleted.hidden = true
+            favorMarkedCompletedMessage.hidden = false
             deleteButton.hidden = true
-            interestedLabel.hidden = false
+            interestedLabel.hidden = true
+            FirebaseProxy.firebaseProxy.markFavorAsCompleted(currentFavor.key, creatorID: currentFavor.creator, finisherID: favorFinisherKey)
+            // find creator user and subtract tokens from them
+            let creatorRef = FirebaseProxy.firebaseProxy.userRef.child(currentFavor.creator)
+            creatorRef.observeSingleEventOfType(.Value, withBlock: { (snapshot) in
+                let tokenAmt = snapshot.value!["Tokens"] as! Int
+                FirebaseProxy.firebaseProxy.updateTokensForUser(self.currentFavor.creator, newAmount: tokenAmt - self.currentFavor.tokenAmount)
+            })
+            let finisherRef = FirebaseProxy.firebaseProxy.userRef.child(favorFinisherKey)
+            finisherRef.observeSingleEventOfType(.Value, withBlock: { (snapshot) in
+                let tokenAmt = snapshot.value!["Tokens"] as! Int
+                FirebaseProxy.firebaseProxy.updateTokensForUser(self.favorFinisherKey, newAmount: tokenAmt + self.currentFavor.tokenAmount)
+            })
+            self.navigationController?.popToRootViewControllerAnimated(true)
+        } else {
+            if (currentUserIsCreator){
+                contactOrMarkAsCompleted.setTitle("Mark as Completed", forState: .Normal)
+                deleteButton.hidden = false
+                interestedLabel.hidden = true
+            } else {
+                contactOrMarkAsCompleted.setTitle("Contact \(favorCreatorName)", forState: .Normal)
+                deleteButton.hidden = true
+                interestedLabel.hidden = false
+            }
         }
-
-        
         
         let dateString = FirebaseProxy.firebaseProxy.convertStringDatetoNSDate(currentFavor.time)
         let localeStr = "us"

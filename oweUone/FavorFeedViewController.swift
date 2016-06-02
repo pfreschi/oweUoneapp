@@ -28,8 +28,6 @@ class FavorFeedViewController: UIViewController, UITableViewDataSource, UITableV
         setupUI()
         
         favorRef.observeEventType(.Value, withBlock: { (snapshot) in
-            print(snapshot.value)
-            
             self.favorsList = []
             
             if let snapshots = snapshot.children.allObjects as? [FIRDataSnapshot] {
@@ -37,8 +35,9 @@ class FavorFeedViewController: UIViewController, UITableViewDataSource, UITableV
                     if let favorDict = snap.value as? Dictionary<String, AnyObject> {
                         let key = snap.key
                         let favor = Favor(key: key, dictionary: favorDict)
-                        
-                        self.favorsList.insert(favor, atIndex: 0)
+                        if !favor.completion {
+                            self.favorsList.insert(favor, atIndex: 0)
+                        }
                     }
                 }
             }
@@ -47,8 +46,6 @@ class FavorFeedViewController: UIViewController, UITableViewDataSource, UITableV
         })
         
         rootRef.child("users").observeEventType(.Value, withBlock: { (snapshot) in
-            print(snapshot.value)
-            
             self.usersList = []
             
             if let snapshots = snapshot.children.allObjects as? [FIRDataSnapshot] {
@@ -94,7 +91,6 @@ class FavorFeedViewController: UIViewController, UITableViewDataSource, UITableV
     func setupUI() {
         tableView.delegate = self
         tableView.dataSource = self
-        
     }
     
     
@@ -124,18 +120,8 @@ class FavorFeedViewController: UIViewController, UITableViewDataSource, UITableV
         }
         
         let postTime = self.favorsList[indexPath.row].time
-        
         let date = FirebaseProxy.firebaseProxy.convertStringDatetoNSDate(postTime)
-        
         cell.postedTime.text = "posted \(FirebaseProxy.firebaseProxy.timeAgoSinceDate(date, numericDates: true)) by \(postCreatorName)"
-        
-        
-        
-
-        
-        
- 
-        
         cell.favorPhoto.layer.cornerRadius = cell.favorPhoto.frame.size.width / 2;
         cell.favorPhoto.clipsToBounds = true;
         

@@ -72,7 +72,6 @@ class MyFavorViewController: UIViewController, UITableViewDataSource, UITableVie
         }
         //info about all users is required to proceed to Favor Detail page
         FirebaseProxy.firebaseProxy.myRootRef.child("users").observeEventType(.Value, withBlock: { (snapshot) in
-            print(snapshot.value)
             
             self.usersList = []
             
@@ -88,7 +87,6 @@ class MyFavorViewController: UIViewController, UITableViewDataSource, UITableVie
                 }
             }
         })
-
     }
     
     override func viewWillAppear(animated: Bool) {

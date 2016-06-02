@@ -67,16 +67,12 @@ class FirebaseProxy: NSObject {
         let childUpdates = ["/favors/\(key)": newFavorDetails,
                             "/users/\(newFavorDetails["creator"]!)/completedFavorsForOthers/\(key)": true]
         FirebaseProxy.firebaseProxy.myRootRef.updateChildValues(childUpdates as [NSObject : AnyObject])
-        
-        
-        
-        
-        
         //FirebaseProxy.firebaseProxy.favorRef.childByAutoId().setValue(newFavorDetails)
     }
     
-    func getTask() {
-        
+    func updateTokensForUser(uid : String, newAmount : Int) {
+        let childUpdates = ["/users/\(uid)/Tokens": newAmount]
+        FirebaseProxy.firebaseProxy.myRootRef.updateChildValues(childUpdates as [NSObject : AnyObject])
     }
     
     func markFavorAsCompleted(favorID: String, creatorID: String, finisherID: String) {
@@ -84,6 +80,7 @@ class FirebaseProxy: NSObject {
         //LATER make sure to implement token deduction from creator to finisher.
         
         let childUpdates = ["/favors/\(favorID)/completed": true,
+                            "/favors/\(favorID)/finisher": finisherID,
                             "/users/\(creatorID)/recievedFavorsFromOthers/\(favorID)": true,
                             "/users/\(finisherID)/completedFavorsForOthers/\(favorID)": true]
         FirebaseProxy.firebaseProxy.myRootRef.updateChildValues(childUpdates as [NSObject : AnyObject])
@@ -178,11 +175,7 @@ class FirebaseProxy: NSObject {
         } else {
             return "just now"
         }
-        
     }
-    
-    
-    
 }
 
 

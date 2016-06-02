@@ -313,7 +313,7 @@
 				TargetAttributes = {
 					AE6807D71CE56F60004CFE60 = {
 						CreatedOnToolsVersion = 7.3;
-						DevelopmentTeam = 9M69K9X2QL;
+						DevelopmentTeam = 33G7MEJKT7;
 					};
 					AE6807EB1CE56F60004CFE60 = {
 						CreatedOnToolsVersion = 7.3;
@@ -664,8 +664,6 @@
 			baseConfigurationReference = C983C79DB4DAA5F4E36BFB84 /* Pods-oweUone.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$PODS_CONFIGURATION_BUILD_DIR/Firebase\"",
@@ -674,9 +672,8 @@
 				);
 				INFOPLIST_FILE = oweUone/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.quynh.oweUOne;
+				PRODUCT_BUNDLE_IDENTIFIER = "INFO498-iOS.oweUone";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
@@ -686,8 +683,6 @@
 			baseConfigurationReference = AD37B0185686535A0CCB380B /* Pods-oweUone.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$PODS_CONFIGURATION_BUILD_DIR/Firebase\"",
@@ -696,9 +691,8 @@
 				);
 				INFOPLIST_FILE = oweUone/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.quynh.oweUOne;
+				PRODUCT_BUNDLE_IDENTIFIER = "INFO498-iOS.oweUone";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
 			};
 			name = Release;
 		};

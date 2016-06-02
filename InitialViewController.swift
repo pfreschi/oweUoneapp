@@ -22,11 +22,11 @@ class InitialViewController: UIViewController {
     }
     
     override func viewDidAppear(animated: Bool) {
-        if NSUserDefaults.standardUserDefaults().valueForKey("uid") != nil {
-           performSegueWithIdentifier("showFeed", sender: self)
-        } else {
+      //  if NSUserDefaults.standardUserDefaults().valueForKey("uid") != nil {
+       //    performSegueWithIdentifier("showFeed", sender: self)
+       // } else {
             performSegueWithIdentifier("showLogin", sender: self)
-        }
+      //  }
         
     }
     

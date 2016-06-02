@@ -89,6 +89,14 @@ class MyFavorViewController: UIViewController, UITableViewDataSource, UITableVie
         })
     }
     
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(true)
+        if let row = incompleteFavorsView.indexPathForSelectedRow {
+            self.incompleteFavorsView.deselectRowAtIndexPath(row, animated: false)
+        }
+    }
+
+    
     @IBAction func switchFavorView(sender: UIButton) {
         incompleteView = !incompleteView
         if(incompleteView) {

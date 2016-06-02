@@ -67,6 +67,13 @@ class FavorFeedViewController: UIViewController, UITableViewDataSource, UITableV
         
     }
     
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(true)
+        if let row = tableView.indexPathForSelectedRow {
+            self.tableView.deselectRowAtIndexPath(row, animated: false)
+        }
+    }
+    
     //Synchronizing data to the table view
     override func viewDidAppear(animated: Bool) {
         //  favorRef.observeEventType(.Value, withBlock: { (snapshot) in

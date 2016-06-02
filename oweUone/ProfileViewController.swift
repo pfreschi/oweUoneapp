@@ -63,23 +63,30 @@ class ProfileViewController: UIViewController {
     
                     let phone = snapshot.value!["Phone"] as! String
                     let tokenAmt = snapshot.value!["Tokens"] as! Int
-                    let completedFavors = snapshot.value!["completedFavorsForOthers"]!!
-                    let receivedFavors = snapshot.value!["recievedFavorsFromOthers"]!!
-                    self.phoneNum.text = phone
-                    self.oweUtokens.text = "\(tokenAmt) oweUtokens"
-                    if completedFavors.count != nil {
-                        self.favorCompleted.text = "Completed \(completedFavors.count) favors for others"
-                        
+                    if (snapshot.hasChild("completedFavorsForOthers")){
+                        let completedFavors = snapshot.value!["completedFavorsForOthers"]!!
+                        if completedFavors.count != nil {
+                            self.favorCompleted.text = "Completed \(completedFavors.count) favors for others"
+                            
+                        }
                     } else {
                         self.favorCompleted.text = "Completed 0 favors for others"
                     }
-                    if receivedFavors.count != nil {
-                        self.favorRecieved.text = "Received \(receivedFavors.count) favors from others"
-                        
+                    if (snapshot.hasChild("recievedFavorsFromOthers")){
+                        let receivedFavors = snapshot.value!["recievedFavorsFromOthers"]!!
+                        if receivedFavors.count != nil {
+                            self.favorRecieved.text = "Received \(receivedFavors.count) favors from others"
+                            
+                        }
+
                     } else {
-                        self.favorRecieved.text = "Completed 0 favors for others"
+                        self.favorRecieved.text = "Received 0 favors from others"
                     }
-                    //self.favorRecieved.text = "Received \(snapshot.value!["receivedFavorsFromOthers"]!!.count) favors from others"
+                    
+                    self.phoneNum.text = phone
+                    self.oweUtokens.text = "\(tokenAmt) oweUtokens"
+                    
+                                        //self.favorRecieved.text = "Received \(snapshot.value!["receivedFavorsFromOthers"]!!.count) favors from others"
                 })
             }
         }

@@ -91,7 +91,7 @@
                                                     <outlet property="date" destination="bI6-gi-heU" id="CU1-cA-fOq"/>
                                                     <outlet property="title" destination="lQ7-t9-TnJ" id="enW-lZ-XE1"/>
                                                     <outlet property="tokenAmt" destination="hpA-w3-IAb" id="GgC-Lt-GfQ"/>
-                                                    <segue destination="Ijw-go-3y5" kind="show" identifier="showIncompleteFavorDetail" id="oeI-QQ-WoC"/>
+                                                    <segue destination="Ijw-go-3y5" kind="show" identifier="showIncompleteFavorDetail" id="VZI-TY-1jy"/>
                                                 </connections>
                                             </tableViewCell>
                                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="CompleteTableViewCell" rowHeight="80" id="h1y-Rk-egU" customClass="CompleteTableViewCell" customModule="oweUone" customModuleProvider="target">
@@ -133,7 +133,7 @@
                                                     <outlet property="completedBy" destination="Wa9-n4-wQF" id="nfZ-tq-Rty"/>
                                                     <outlet property="title" destination="snV-bU-yac" id="m1f-1m-vmh"/>
                                                     <outlet property="tokenAmt" destination="eUw-dF-iqY" id="pBK-db-Ece"/>
-                                                    <segue destination="Ijw-go-3y5" kind="show" id="bD1-4z-aWX"/>
+                                                    <segue destination="Ijw-go-3y5" kind="show" identifier="showCompletedFavorDetail" id="ttL-tb-BxK"/>
                                                 </connections>
                                             </tableViewCell>
                                         </prototypes>
@@ -922,6 +922,6 @@
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="yvl-nN-Dsm"/>
-        <segue reference="KIk-z7-j7B"/>
+        <segue reference="ttL-tb-BxK"/>
     </inferredMetricsTieBreakers>
 </document>

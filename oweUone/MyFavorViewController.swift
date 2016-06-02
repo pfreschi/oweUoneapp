@@ -163,7 +163,7 @@ class MyFavorViewController: UIViewController, UITableViewDataSource, UITableVie
                 vc.favorsList = self.incompleteFavors
                 vc.usersList = self.usersList
             }
-        } else if segue.identifier == "showCompletedFavorDetail"{
+        } else if segue.identifier == "showCompletedFavorDetail" {
             if let cell = sender as? UITableViewCell {
                 let i = incompleteFavorsView.indexPathForCell(cell)!.row
                 let vc = segue.destinationViewController as! FavorDetailViewController

@@ -43,24 +43,31 @@ class PostFavorViewController: UIViewController {
         } else {
             if let user = FIRAuth.auth()?.currentUser {
                 for profile in user.providerData {
-                    uid = profile.uid;  // Provider-specific UID
+                    uid = profile.uid;  // get Provider-specific UID
                     self.userRef.child(uid).observeSingleEventOfType(.Value, withBlock: { (snapshot) in
                         let totalTokens = snapshot.value!["Tokens"] as! Int
-                        if(Int(requestedTokens!) <= totalTokens) {
-                            FirebaseProxy.firebaseProxy.saveFavor(title!, descr: descr!, tokenAmount: Int(requestedTokens!)!, creator: self.uid)
-                            self.navigationController!.viewControllers.popLast()
-                        } else {
-                            self.warningText.text = "You wanted to post a favor with \(requestedTokens) but you only have \(totalTokens). Try lowering the token amount."
-                        }
+                        
+                        // find the total # of tokens of all favors user has posted
+                        FirebaseProxy.firebaseProxy.favorRef.observeEventType(FIRDataEventType.Value, withBlock: { (snapshot) in
+                            let favorList = snapshot.value as! [String : AnyObject]
+                            var totalTokensPosted = 0
+                            for (key, value) in favorList {
+                                let favor = Favor(key: key, dictionary: value as! Dictionary<String, AnyObject>)
+                                if(profile.uid == favor.creator && !favor.completion) {
+                                    totalTokensPosted += favor.tokenAmount
+                                }
+                            }
+
+                            // check & display error message if they don't have enough tokens
+                            let tokensLeft = totalTokens - totalTokensPosted
+                            if(Int(requestedTokens!) <= tokensLeft) {
+                                FirebaseProxy.firebaseProxy.saveFavor(title!, descr: descr!, tokenAmount: Int(requestedTokens!)!, creator: self.uid)
+                                self.navigationController!.viewControllers.popLast()
+                            } else {
+                                self.warningText.text = "You wanted to post a favor with \(requestedTokens!) but you only have \(tokensLeft). Try lowering the token amount."
+                            }
+                        })
                     })
-                    //let test = userHasEnoughTokens(uid, requestedTokens: Int(token!)!)
-                    /*print("user has enough tokens: \(test)")
-                    if test {
-                        FirebaseProxy.firebaseProxy.saveFavor(title!, descr: descr!, tokenAmount: Int(token!)!, creator: uid)
-                        performSegueWithIdentifier("backToFeed", sender: self)
-                    } else {
-                        warningText.text = "You don't have enough tokens"
-                    }*/
                 }
             }
         }
